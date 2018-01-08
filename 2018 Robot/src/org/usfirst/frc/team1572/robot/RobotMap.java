@@ -7,6 +7,12 @@
 
 package org.usfirst.frc.team1572.robot;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -14,6 +20,20 @@ package org.usfirst.frc.team1572.robot;
  * floating around.
  */
 public class RobotMap {
+	
+	public static TalonSRX leftDriveMaster;
+	public static TalonSRX leftDriveSlave;
+	public static TalonSRX rightDriveMaster;
+	public static TalonSRX rightDriveSlave;
+	
+	public static void init() {
+		leftDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		leftDriveSlave.follow(leftDriveMaster);
+		rightDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		rightDriveSlave.follow(rightDriveMaster);
+		//add PIDF configurations for speed control
+	}
+	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;

@@ -4,9 +4,6 @@ import org.usfirst.frc.team1572.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class LeftAutoPreferScale extends CommandGroup {
 
     public LeftAutoPreferScale() {
