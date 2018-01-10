@@ -28,10 +28,11 @@ public class RobotMap {
 	public static TalonSRX rightDriveSlave;
 	public static TalonSRX bottomForklift;
 	public static TalonSRX topForklift;
-	public double bottomLowLimit = 0;
-	public double bottomHighLimit = 0;
-	public double topLowLimit = 0;
-	public double topHighLimit = 0;
+	public static double bottomLowLimit = 0;
+	public static double bottomHighLimit = 0;
+	public static double topLowLimit = 0;
+	public static double topHighLimit = 0;
+	public static Spark intake;
 	//Victors for practice robot
 	public static Victor leftDrive1;
 	public static Victor leftDrive2;
@@ -47,6 +48,7 @@ public class RobotMap {
 		rightDriveSlave = new TalonSRX(4);
 		bottomForklift = new TalonSRX(5);
 		topForklift = new TalonSRX(6);
+		intake = new Spark(0);
 		leftDrive1 = new Victor(4);
 		leftDrive2 = new Victor(5);
 		rightDrive1 = new Victor(6);
