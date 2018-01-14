@@ -33,11 +33,10 @@ public class RobotMap {
 	public static double topLowLimit = 0;
 	public static double topHighLimit = 0;
 	public static Spark intake;
+	public static Victor climb;
 	//Victors for practice robot
-	public static Victor leftDrive1;
-	public static Victor leftDrive2;
-	public static Victor rightDrive1;
-	public static Victor rightDrive2;
+	public static Victor leftDrive;
+	public static Victor rightDrive;
 	public static Encoder leftEncoder;
 	public static Encoder rightEncoder;
 	
@@ -48,11 +47,12 @@ public class RobotMap {
 		rightDriveSlave = new TalonSRX(4);
 		bottomForklift = new TalonSRX(5);
 		topForklift = new TalonSRX(6);
-		intake = new Spark(0);
-		leftDrive1 = new Victor(4);
-		leftDrive2 = new Victor(5);
-		rightDrive1 = new Victor(6);
-		rightDrive2 = new Victor(7);
+		intake = new Spark(2);
+		climb = new Victor(1);
+		leftDrive = new Victor(8);
+		leftDrive.setInverted(true);
+		rightDrive = new Victor(9);
+		rightDrive.setInverted(true);
 		leftDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		leftDriveSlave.follow(leftDriveMaster);
 		rightDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);

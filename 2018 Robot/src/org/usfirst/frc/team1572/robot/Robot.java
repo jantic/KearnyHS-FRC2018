@@ -7,6 +7,30 @@
 
 package org.usfirst.frc.team1572.robot;
 
+import org.usfirst.frc.team1572.robot.commands.autonomous.AutoLine;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoFullScale;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoFullSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoPreferScale;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoPreferScaleCross;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoPreferSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoPreferSwitchCross;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoScale;
+import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoFullScale;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoFullSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferScale;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferScaleCross;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferSwitchCross;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoScale;
+import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoSwitch;
+import org.usfirst.frc.team1572.robot.commands.main.TeleopDrive;
+import org.usfirst.frc.team1572.robot.subsystems.Climber;
+import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1572.robot.subsystems.Forklift;
+import org.usfirst.frc.team1572.robot.subsystems.HeadingSubsystem;
+import org.usfirst.frc.team1572.robot.subsystems.Intake;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,12 +48,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	//public static final ExampleSubsystem kExampleSubsystem
 	//		= new ExampleSubsystem();
-	public static OI oi;
+	//public static OI oi;
 	public static char ourSwitch;
 	public static char scale;
+	public static Drivetrain drivetrain;
+	public static Forklift forklift;
+	public static Intake intake;
+	public static Climber climber;
+	public static HeadingSubsystem headingSubsystem;
 
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command autonomousCommand;
+	SendableChooser<Command> chooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -37,11 +66,34 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
+		//oi = new OI();
 		RobotMap.init();
+		drivetrain = new Drivetrain();
+		forklift = new Forklift();
+		intake = new Intake();
+		climber = new Climber();
+		headingSubsystem = new HeadingSubsystem();
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		chooser = new SendableChooser<Command>();
+		chooser.addDefault("Auto line", new AutoLine());
+		chooser.addObject("Left auto switch", new LeftAutoSwitch());
+		chooser.addObject("Right auto switch", new RightAutoSwitch());
+		chooser.addObject("Left auto scale", new LeftAutoScale());
+		chooser.addObject("Right auto scale", new RightAutoScale());
+		chooser.addObject("Left auto prefer switch", new LeftAutoPreferSwitch());
+		chooser.addObject("Right auto prefer switch", new RightAutoPreferSwitch());
+		chooser.addObject("Left auto prefer scale", new LeftAutoPreferScale());
+		chooser.addObject("Right auto prefer scale", new RightAutoPreferScale());
+		chooser.addObject("Left auto prefer switch cross", new LeftAutoPreferSwitchCross());
+		chooser.addObject("Right auto prefer switch cross", new RightAutoPreferSwitchCross());
+		chooser.addObject("Left auto prefer scale cross", new LeftAutoPreferScaleCross());
+		chooser.addObject("Right auto prefer scale cross", new RightAutoPreferScaleCross());
+		chooser.addObject("Left auto full switch", new LeftAutoFullSwitch());
+		chooser.addObject("Right auto full switch", new RightAutoFullSwitch());
+		chooser.addObject("Left auto full scale", new LeftAutoFullScale());
+		chooser.addObject("Right auto full scale", new RightAutoFullScale());
+		SmartDashboard.putData("Auto chooser", chooser);
 	}
 
 	/**
@@ -72,12 +124,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		
 		String colors;
 		colors = DriverStation.getInstance().getGameSpecificMessage();
 		ourSwitch = colors.charAt(0);
 		scale = colors.charAt(1);
-
+		autonomousCommand = chooser.getSelected();
+		System.out.println(autonomousCommand.getName());
+		autonomousCommand.start();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -86,9 +140,6 @@ public class Robot extends TimedRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
-		}
 	}
 
 	/**
@@ -105,9 +156,10 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
+		if (autonomousCommand != null) {
+			autonomousCommand.cancel();
 		}
+		Scheduler.getInstance().add(new TeleopDrive());
 	}
 
 	/**
