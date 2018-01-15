@@ -97,6 +97,26 @@ public class Drivetrain extends Subsystem {
 		averageDistance /= 2;
 		System.out.println(averageDistance);
 	}
+	
+	public double EncoderValue(boolean left, boolean right, boolean average) {
+		if (left) {
+			return leftEncoder.getDistance();
+		}
+		
+		else if (right) {
+			return rightEncoder.getDistance();
+		}
+		
+		double averageDistance = leftEncoder.getDistance() + rightEncoder.getDistance();
+		averageDistance /= 2;
+		return averageDistance;
+		
+		}
+	
+	public void EncoderResest() {
+		rightEncoder.reset();
+		leftEncoder.reset();
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
