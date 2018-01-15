@@ -5,6 +5,7 @@ import org.usfirst.frc.team1572.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,6 +18,8 @@ public class Drivetrain extends Subsystem {
 	TalonSRX rightMaster = RobotMap.rightDriveMaster;
 	Victor leftDrive = RobotMap.leftDrive;
 	Victor rightDrive = RobotMap.rightDrive;
+	Encoder leftEncoder = RobotMap.leftEncoder;
+	Encoder rightEncoder = RobotMap.rightEncoder;
 	double maxRPM = 3200;
 	
 	public void arcadeDriveVoltage(double x, double y, double maxX, double maxY) {
@@ -80,7 +83,20 @@ public class Drivetrain extends Subsystem {
 		/*leftDrive.set(leftMaster.getMotorOutputPercent());
 		rightDrive.set(rightMaster.getMotorOutputPercent());*/
 	}
-
+	
+	public void readLeftEncoder() {
+		 System.out.println(leftEncoder.getDistance());
+	}
+	
+	public void readRightEncoder() {
+		System.out.println(rightEncoder.getDistance());
+	}
+		
+	public void readAverageEncoder() {
+		double averageDistance = leftEncoder.getDistance() + rightEncoder.getDistance();
+		averageDistance /= 2;
+		System.out.println(averageDistance);
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

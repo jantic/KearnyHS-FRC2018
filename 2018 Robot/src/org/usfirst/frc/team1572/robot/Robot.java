@@ -30,6 +30,7 @@ import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1572.robot.subsystems.Forklift;
 import org.usfirst.frc.team1572.robot.subsystems.HeadingSubsystem;
 import org.usfirst.frc.team1572.robot.subsystems.Intake;
+import org.usfirst.frc.team1572.robot.subsystems.PlatformRelease;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -56,6 +57,7 @@ public class Robot extends TimedRobot {
 	public static Intake intake;
 	public static Climber climber;
 	public static HeadingSubsystem headingSubsystem;
+	public static PlatformRelease platformRelease;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
@@ -73,6 +75,7 @@ public class Robot extends TimedRobot {
 		intake = new Intake();
 		climber = new Climber();
 		headingSubsystem = new HeadingSubsystem();
+		platformRelease = new PlatformRelease();
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		chooser = new SendableChooser<Command>();

@@ -1,11 +1,11 @@
 package org.usfirst.frc.team1572.robot;
 
 import org.usfirst.frc.team1572.robot.commands.main.Climb;
+import org.usfirst.frc.team1572.robot.commands.main.Deploy;
 import org.usfirst.frc.team1572.robot.commands.main.ForwardIntake;
 import org.usfirst.frc.team1572.robot.commands.main.ReverseIntake;
 import org.usfirst.frc.team1572.robot.commands.main.StopClimb;
 import org.usfirst.frc.team1572.robot.commands.main.StopIntake;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -26,6 +26,7 @@ public class JoystickController {
 		setButtonPressBehavior(joystick, 1, new Climb(), new StopClimb());
 		setButtonPressBehavior(joystick, 2, new ForwardIntake(), new StopIntake());
 		setButtonPressBehavior(joystick, 3, new ReverseIntake(), new StopIntake());
+		setButtonBehavior(joystick, 4, new Deploy());
 		return new JoystickController(joystick);
 	}
 

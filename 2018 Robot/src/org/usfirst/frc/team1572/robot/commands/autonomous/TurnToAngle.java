@@ -59,7 +59,7 @@ public class TurnToAngle extends TimedCommand {
 		this.currentAngle = headingSubsystem.getAngle();
 		double error = this.targetAngle - this.currentAngle;
 		error/=this.targetAngle;
-		error*= 1.3; 
+		error*= 1.16; 
 		error*= this.turnSpeed;
 		if (Math.abs(error) > this.turnSpeed) {
 			error = turnSpeed;

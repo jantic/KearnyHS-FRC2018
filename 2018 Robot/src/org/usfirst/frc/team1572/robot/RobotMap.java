@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Victor;
 
@@ -39,6 +40,7 @@ public class RobotMap {
 	public static Victor rightDrive;
 	public static Encoder leftEncoder;
 	public static Encoder rightEncoder;
+	public static Relay platform;
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
@@ -47,6 +49,7 @@ public class RobotMap {
 		rightDriveSlave = new TalonSRX(4);
 		bottomForklift = new TalonSRX(5);
 		topForklift = new TalonSRX(6);
+		platform = new Relay(7);
 		intake = new Spark(2);
 		climb = new Victor(1);
 		leftDrive = new Victor(8);

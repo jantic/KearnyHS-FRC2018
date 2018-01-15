@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLine extends CommandGroup {
 
     public AutoLine() {
-    	addSequential(new TurnToAngle(3,-90,0.5));
+    	addSequential(new TurnToAngle(3,90,0.5));
     	//Drive forward over auto line
     	
         // Add Commands here:
