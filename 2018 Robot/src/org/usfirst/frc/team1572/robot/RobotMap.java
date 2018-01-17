@@ -41,6 +41,7 @@ public class RobotMap {
 	public static Encoder leftEncoder;
 	public static Encoder rightEncoder;
 	public static Relay platform;
+	public static Relay climbReleaser;
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
@@ -50,6 +51,7 @@ public class RobotMap {
 		bottomForklift = new TalonSRX(5);
 		topForklift = new TalonSRX(6);
 		platform = new Relay(7);
+		climbReleaser = new Relay(6);
 		intake = new Spark(2);
 		climb = new Victor(1);
 		leftDrive = new Victor(8);

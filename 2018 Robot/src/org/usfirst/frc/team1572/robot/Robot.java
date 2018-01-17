@@ -25,6 +25,7 @@ import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferSwitchC
 import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoScale;
 import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoSwitch;
 import org.usfirst.frc.team1572.robot.commands.main.TeleopDrive;
+import org.usfirst.frc.team1572.robot.subsystems.ClimbRelease;
 import org.usfirst.frc.team1572.robot.subsystems.Climber;
 import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1572.robot.subsystems.Forklift;
@@ -58,6 +59,7 @@ public class Robot extends TimedRobot {
 	public static Climber climber;
 	public static HeadingSubsystem headingSubsystem;
 	public static PlatformRelease platformRelease;
+	public static ClimbRelease climbRelease;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
@@ -76,6 +78,7 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		headingSubsystem = new HeadingSubsystem();
 		platformRelease = new PlatformRelease();
+		climbRelease = new ClimbRelease();
 		//m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		chooser = new SendableChooser<Command>();

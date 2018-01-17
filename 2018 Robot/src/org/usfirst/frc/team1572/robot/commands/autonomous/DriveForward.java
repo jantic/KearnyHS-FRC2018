@@ -32,7 +32,8 @@ public class DriveForward extends Command {
 	    // Called repeatedly when this Command is scheduled to run
 	    final double joystickY = generateJoystickY();
 		//final double joystickY = 0.0;
-		this.drivetrain.arcadeDriveVoltage(0, joystickY, 1, 0);
+		//this.drivetrain.arcadeDriveVoltage(0, joystickY, 1, 0);
+	    this.drivetrain.arcadeDriveRPM(0, joystickY, 1, 1);
 		final double currentDistance = this.currentDistance;
 		final double diff = (this.targetDistance - currentDistance);
 		

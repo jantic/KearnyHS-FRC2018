@@ -17,6 +17,9 @@ public class PlatformRelease extends Subsystem {
 	public void deploy() {
 		platform.set(Relay.Value.kOn);
 	}
+	public void undeploy() {
+		platform.set(Relay.Value.kOff);
+	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

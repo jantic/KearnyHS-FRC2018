@@ -27,6 +27,7 @@ public class Climb extends Command {
     	climber.climb(0.25);
     }
 
+    //should we make a ReverseClimb
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
