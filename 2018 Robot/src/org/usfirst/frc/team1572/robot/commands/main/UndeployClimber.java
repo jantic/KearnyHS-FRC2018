@@ -1,19 +1,19 @@
 package org.usfirst.frc.team1572.robot.commands.main;
 
 import org.usfirst.frc.team1572.robot.Robot;
-import org.usfirst.frc.team1572.robot.subsystems.PlatformRelease;
+import org.usfirst.frc.team1572.robot.subsystems.ClimbRelease;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Deploy extends Command {
-	PlatformRelease platformRelease = Robot.platformRelease;
-    public Deploy() {
+public class UndeployClimber extends Command {
+	ClimbRelease climbRelease = Robot.climbRelease;
+    public UndeployClimber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.platformRelease);
+    	requires(Robot.climbRelease);
     	
     	
     }
@@ -24,7 +24,7 @@ public class Deploy extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	platformRelease.deploy();
+    	climbRelease.unrelease();
     }
 
     // Make this return true when this Command no longer needs to run execute()
