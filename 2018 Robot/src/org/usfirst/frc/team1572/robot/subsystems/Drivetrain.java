@@ -98,12 +98,12 @@ public class Drivetrain extends Subsystem {
 		System.out.println(averageDistance);
 	}
 	
-	public double EncoderValue(boolean left, boolean right, boolean average) {
-		if (left) {
+	public double EncoderValue(EncoderType encoder) {
+		if (encoder.getDeviceNumber() == 0) {
 			return leftEncoder.getDistance();
 		}
 		
-		else if (right) {
+		else if (encoder.getDeviceNumber() == 1) {
 			return rightEncoder.getDistance();
 		}
 		

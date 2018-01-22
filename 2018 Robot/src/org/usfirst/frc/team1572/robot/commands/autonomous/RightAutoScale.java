@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -12,9 +14,13 @@ public class RightAutoScale extends CommandGroup {
     public RightAutoScale() {
     	if(Robot.scale == 'L') {
     		//drive over auto line
+    		addSequential(new DriveForward(14, 1));
     	}
     	else {
     		//place box in scale
+    		addSequential(new DriveForward(25, 1));
+    		addSequential(new TurnToAngle(3, 60, 1));
+    		addSequential(new DriveForward(2, 1));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

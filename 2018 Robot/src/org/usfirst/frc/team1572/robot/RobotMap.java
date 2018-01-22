@@ -24,15 +24,15 @@ import edu.wpi.first.wpilibj.Victor;
 public class RobotMap {
 	
 	public static TalonSRX leftDriveMaster;
-	public static TalonSRX leftDriveSlave;
+	//public static TalonSRX leftDriveSlave;
 	public static TalonSRX rightDriveMaster;
 	public static TalonSRX rightDriveSlave;
 	public static TalonSRX bottomForklift;
 	public static TalonSRX topForklift;
 	public static double bottomLowLimit = 0;
-	public static double bottomHighLimit = 0;
+	public static double bottomHighLimit = 22187;
 	public static double topLowLimit = 0;
-	public static double topHighLimit = 0;
+	public static double topHighLimit = 22187;
 	public static Spark intake;
 	public static Victor climb;
 	//Victors for practice robot
@@ -45,13 +45,13 @@ public class RobotMap {
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
-		leftDriveSlave = new TalonSRX(2);
+		//leftDriveSlave = new TalonSRX(2);
 		rightDriveMaster = new TalonSRX(3);
 		rightDriveSlave = new TalonSRX(4);
-		bottomForklift = new TalonSRX(5);
-		topForklift = new TalonSRX(6);
-		platform = new Relay(7);
-		climbReleaser = new Relay(6);
+		bottomForklift = new TalonSRX(2);
+		topForklift = new TalonSRX(5);
+		platform = new Relay(0);
+		climbReleaser = new Relay(1);
 		intake = new Spark(2);
 		climb = new Victor(1);
 		leftDrive = new Victor(8);
@@ -59,13 +59,17 @@ public class RobotMap {
 		rightDrive = new Victor(9);
 		rightDrive.setInverted(true);
 		leftDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
-		leftDriveSlave.follow(leftDriveMaster);
+		leftDriveMaster.setSelectedSensorPosition(0, 0, 0);
+		//leftDriveSlave.follow(leftDriveMaster);
 		rightDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		rightDriveMaster.setSelectedSensorPosition(0, 0, 0);
 		rightDriveSlave.follow(rightDriveMaster);
 		//add PIDF configurations for drivetrain speed control
 		//add setup for encoders
 		bottomForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		bottomForklift.setSelectedSensorPosition(0, 0, 0);
 		topForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		topForklift.setSelectedSensorPosition(0, 0, 0);
 	}
 	
 	// For example to map the left and right motors, you could define the

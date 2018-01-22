@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,13 +13,18 @@ public class RightAutoPreferScale extends CommandGroup {
 
     public RightAutoPreferScale() {
     	if(Robot.scale == 'R') {
-    		//Place box in scale
+    		addSequential(new DriveForward(25, 1));
+    		addSequential(new TurnToAngle(3, 60, 1));
+    		addSequential(new DriveForward(2, 1));
     	}
     	else if(Robot.ourSwitch == 'R') {
-    		//Place box in switch
+    		addSequential(new DriveForward(18, 1));
+    		addSequential(new TurnToAngle(3, 90, 1));
+    		addSequential(new DriveForward(2, 1));
     	}
     	else {
     		//Drive over auto line
+    		addSequential(new DriveForward(14, 1));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

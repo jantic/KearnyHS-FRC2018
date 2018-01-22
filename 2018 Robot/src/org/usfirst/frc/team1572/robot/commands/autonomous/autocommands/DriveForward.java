@@ -1,7 +1,8 @@
-package org.usfirst.frc.team1572.robot.commands.autonomous;
+package org.usfirst.frc.team1572.robot.commands.autonomous.autocommands;
 
 import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1572.robot.subsystems.EncoderType;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -48,7 +49,7 @@ public class DriveForward extends Command {
     }
 
 private double generateJoystickY(){
-	this.currentDistance = drivetrain.EncoderValue(false, false, true);
+	this.currentDistance = drivetrain.EncoderValue(EncoderType.average);
 	double error = this.targetDistance - this.currentDistance;
 	error/=this.targetDistance;
 	error*= 1.16; 

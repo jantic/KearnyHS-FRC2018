@@ -174,6 +174,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		//forklift.moveToPosition(30000, 1);
 	}
 
 	/**

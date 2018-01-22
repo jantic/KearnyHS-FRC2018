@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1572.robot.commands.autonomous;
+package org.usfirst.frc.team1572.robot.commands.autonomous.autocommands;
 
 import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.subsystems.HeadingSubsystem;

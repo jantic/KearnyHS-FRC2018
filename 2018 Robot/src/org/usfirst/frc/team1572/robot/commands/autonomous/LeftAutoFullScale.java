@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -8,13 +10,22 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class LeftAutoFullScale extends CommandGroup {
-
+	
     public LeftAutoFullScale() {
     	if(Robot.scale == 'L') {
     		//place box in scale left plate
+    		addSequential(new DriveForward(25, 1));
+    		addSequential(new TurnToAngle(3, -60, 1));
+    		addSequential(new DriveForward(2, 1));
+    		
     	}
     	else {
     		//go around switch and place box in scale right plate
+    		addSequential(new DriveForward(18, 1));
+    		addSequential(new TurnToAngle(3, -90, 1));
+    		addSequential(new DriveForward(15, 1));
+    		addSequential(new TurnToAngle(3, 90, 1));
+    		addSequential(new DriveForward(6, 1));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

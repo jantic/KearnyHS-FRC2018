@@ -4,16 +4,16 @@ import org.usfirst.frc.team1572.robot.JoystickController;
 import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.subsystems.Forklift;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ForkliftUp extends InstantCommand {
+public class ForkliftUp extends Command {
 	Forklift forklift = Robot.forklift;
-	JoystickController mainJoystick = JoystickController.MAIN_JOYSTICK;
-    JoystickController coPilotJoystick = JoystickController.COPILOT_JOYSTICK;
-    public ForkliftUp() {
+
+	public ForkliftUp() {
         super();
         requires(Robot.forklift);
         // Use requires() here to declare subsystem dependencies
@@ -26,8 +26,14 @@ public class ForkliftUp extends InstantCommand {
     }
     
     protected void execute() {
-    	double rightTrigger = coPilotJoystick.getRightTrigger();
-    	forklift.moveToPosition(forklift.currentPosition() + rightTrigger, 0.5);
+    	forklift.moveToPosition(30000, 1);
+    	//forklift.currentPosition() + rightTrigger
     }
+
+	@Override
+	protected boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
 }

@@ -4,12 +4,13 @@ import org.usfirst.frc.team1572.robot.JoystickController;
 import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.subsystems.Forklift;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ForkliftDown extends InstantCommand {
+public class ForkliftDown extends Command {
 	Forklift forklift = Robot.forklift;
 	JoystickController mainJoystick = JoystickController.MAIN_JOYSTICK;
     JoystickController coPilotJoystick = JoystickController.COPILOT_JOYSTICK;
@@ -26,9 +27,16 @@ public class ForkliftDown extends InstantCommand {
     }
     
     protected void execute() {
-    	double leftTrigger = coPilotJoystick.getLeftTrigger();
-    	forklift.moveToPosition(forklift.currentPosition() - leftTrigger, 0.5);
+    	//double leftTrigger = coPilotJoystick.getLeftTrigger();
+    	forklift.moveToPosition(0, 1);
+    	//forklift.currentPosition() - leftTrigger
     }
+
+	@Override
+	protected boolean isFinished() {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
 }
 

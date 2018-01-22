@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLine extends CommandGroup {
 
     public AutoLine() {
-    	addSequential(new TurnToAngle(3,90,0.5));
+    	addSequential(new DriveForward(14, 1));
     	//Drive forward over auto line
     	
         // Add Commands here:
