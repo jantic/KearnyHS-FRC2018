@@ -13,6 +13,8 @@ import org.usfirst.frc.team1572.robot.commands.main.StopIntake;
 public class Testing extends CommandGroup {
 
     public Testing() {
+    	//tests different auto commands groups before commands enter the auto environment
+    	
     	//addSequential(new Forward(0.5));
     	
     	//addSequential(new DriveForwardTimed(5, 0.5, 5));

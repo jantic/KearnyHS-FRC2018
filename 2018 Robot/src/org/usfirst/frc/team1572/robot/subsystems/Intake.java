@@ -15,7 +15,7 @@ public class Intake extends Subsystem {
 	public void runIntake(double speed) {
 		intake.set(speed);
 	}
-
+	//sets speed of intake
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

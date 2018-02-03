@@ -16,11 +16,13 @@ public class Forklift extends Subsystem {
 	
 	TalonSRX bottomForklift = RobotMap.bottomForklift;
 	TalonSRX topForklift = RobotMap.topForklift;
+	//call devices under new name
 	double bottomLowLimit = RobotMap.bottomLowLimit;
 	double bottomHighLimit = RobotMap.bottomHighLimit;
 	double topLowLimit = RobotMap.topLowLimit;
 	double topHighLimit = RobotMap.topHighLimit;
 	double totalTravel = RobotMap.totalTravel;
+	//sets the limts of the stages
 	double x = 1;
 	public void moveToPosition(double position, double maxSpeed) {
 		if(position < bottomLowLimit) {
@@ -37,6 +39,7 @@ public class Forklift extends Subsystem {
 		else {
 			top = position;
 		}
+		//sets position limits so we don't break the forklift
 		bottom = position - top;
 		bottomToPosition(bottom + bottomLowLimit, maxSpeed);
 		topToPosition(top + topLowLimit, maxSpeed);
@@ -51,11 +54,13 @@ public class Forklift extends Subsystem {
 		double bottomPosition = bottomForklift.getSelectedSensorPosition(0);
 		SmartDashboard.putNumber("bottomPosition", bottomPosition);
 		return bottomPosition;
+		//gets the position of the bottom
 	}
 	double topPosition() {
 		double topPosition = topForklift.getSelectedSensorPosition(0);
 		SmartDashboard.putNumber("topPosition", topPosition);
 		return topPosition;
+		//gets the position of the top
 	}
 	void bottomToPosition(double position, double maxSpeed) {
 		double difference = position - bottomPosition();
@@ -65,6 +70,7 @@ public class Forklift extends Subsystem {
 		difference *= maxSpeed;
 		//if (position > bottomPosition()) {
 			bottomForklift.set(ControlMode.PercentOutput, difference);
+			//sends bottom part the forklift to a position
 		//}
 		/*else {
 			bottomForklift.set(ControlMode.PercentOutput, 0);
@@ -81,6 +87,7 @@ public class Forklift extends Subsystem {
 		difference *= maxSpeed;
 		//if (position > topPosition()) {
 			topForklift.set(ControlMode.PercentOutput, difference);
+			//sets the top part of a forklift to a positon
 		//}
 		//else {
 		//	topForklift.set(ControlMode.PercentOutput, 0);
@@ -92,6 +99,7 @@ public class Forklift extends Subsystem {
 	public void stopForklift() {
 		topForklift.set(ControlMode.PercentOutput, 0);
 		bottomForklift.set(ControlMode.PercentOutput, 0);
+		//stops both stages
 	}
 	
 	public double getCurrentPos() {
@@ -99,6 +107,7 @@ public class Forklift extends Subsystem {
 		double topPos = topForklift.getSelectedSensorPosition(0);
 		double currentPos = bottomPos + topPos;
 		return currentPos;
+		//gets the current postion of the forklift
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

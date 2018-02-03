@@ -27,7 +27,7 @@ public class TurnToAngle extends TimedCommand {
         if (this.turnSpeed > 0.5) {
         	this.turnSpeed = 0.5;
         }
-        
+        //sets parameters to private variables
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.headingSubsystem);
@@ -35,14 +35,19 @@ public class TurnToAngle extends TimedCommand {
    
    protected void initialize() {
 	   headingSubsystem.reset();
+	   //resets sensor systems
    }
   
    protected void execute() {
 		final double joystickX = generateJoystickX();
+		//creates value for x-axis 
 		//final double joystickY = 0.0;
 		this.drivetrain.arcadeDriveVoltage(joystickX, 0, 1, 0);
+		//drives the drivetrain
+		
 		final double currentAngle = this.currentAngle;
 		final double diff = (this.targetAngle - currentAngle);
+		//checks angle remaining for debug?
 		
 		/*if(Math.abs(diff) < this.angleTolerance){
 			withinTolerance = true;
@@ -68,6 +73,7 @@ public class TurnToAngle extends TimedCommand {
 		return -error;
 		}
 		return error;
+		//creates value for x axis based on angle remaining
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -85,6 +91,7 @@ public class TurnToAngle extends TimedCommand {
 	@Override
 	protected void end() {
 		this.drivetrain.arcadeDriveVoltage(0, 0, 0, 0);
+		//stops robot once angle is met
 	}
 
 }

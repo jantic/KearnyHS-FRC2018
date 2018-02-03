@@ -14,7 +14,9 @@ public class JustForward extends Command {
 	Drivetrain drivetrain = Robot.drivetrain;
 	
     public JustForward() {
+    	//tester to see if robot drives forward
     	requires(drivetrain);
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

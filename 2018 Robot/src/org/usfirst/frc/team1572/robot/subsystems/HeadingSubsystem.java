@@ -14,6 +14,7 @@ public class HeadingSubsystem extends Subsystem{
 	
 	public HeadingSubsystem(){
 		this.navxSensor  = new AHRS(SPI.Port.kMXP);
+		//ID's port
 	}
 	public AHRS getNavx(){
 		return this.navxSensor;
@@ -22,6 +23,7 @@ public class HeadingSubsystem extends Subsystem{
 		this.navxSensor.reset();
 		this.navxSensor.resetDisplacement();
 		this.navxSensor.zeroYaw();
+		//resets the sensor
 	}
 	//-180 to 180
 	public double getAngle(){
@@ -31,7 +33,7 @@ public class HeadingSubsystem extends Subsystem{
 	public double getCompassHeading(){
 		return this.navxSensor.getCompassHeading();
 	}
-
+	//gets angles and heading
 	@Override
 	protected void initDefaultCommand() {
 		this.setDefaultCommand(new StreamHeadingOutput());	

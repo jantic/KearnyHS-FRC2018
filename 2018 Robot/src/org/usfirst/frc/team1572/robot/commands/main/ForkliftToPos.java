@@ -13,7 +13,7 @@ public class ForkliftToPos extends Command {
 
 	Forklift forklift = Robot.forklift;
 	double position;
-	
+						//the position to go
     public ForkliftToPos(double position) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -29,6 +29,7 @@ public class ForkliftToPos extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	forklift.moveToPosition(this.position, 0.5);
+    	//sets the position based on parameter value - USE FOR AUTO
     }
     
     // Make this return true when this Command no longer needs to run execute()

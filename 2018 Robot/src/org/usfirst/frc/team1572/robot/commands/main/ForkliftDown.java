@@ -30,6 +30,7 @@ public class ForkliftDown extends Command {
     	//double leftTrigger = coPilotJoystick.getLeftTrigger();
     	forklift.moveToPosition(0, 1);
     	//forklift.currentPosition() - leftTrigger
+    	//brings down the forklift to lowest position
     }
 
 	@Override

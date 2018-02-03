@@ -26,6 +26,7 @@ public class JoystickController {
 	private final Joystick joystick;
 	public static JoystickController MAIN_JOYSTICK = generateMainJoystick();
 	public static JoystickController COPILOT_JOYSTICK = generateCoPilotJoystick();
+	//Int Main Joystick and Copilot Joystick
 	
 	private static JoystickController generateMainJoystick(){
 		final Joystick joystick = new Joystick(0);
@@ -39,12 +40,14 @@ public class JoystickController {
 		setButtonPressBehavior(joystick, 6, new ForkliftUp(), new StopForklift());
 		setButtonPressBehavior(joystick, 7, new ForkliftDown(), new StopForklift());
 		return new JoystickController(joystick);
+		
+		//sets button controls for Main Controller
 	}
 
 	private static JoystickController generateCoPilotJoystick(){
 		final Joystick joystick = new Joystick(1);
 		//setButtonBehavior(joystick, JoystickButtonMap.six, new ShootClose(), new StopShooting());
-		
+		//set buttom controls for Co controller
 		return new JoystickController(joystick);
 	}
 	
@@ -53,8 +56,7 @@ public class JoystickController {
 		button.whileHeld(whileHeldCommand);
 	}
 	
-	private static void setButtonBehavior(final Joystick joystick, final int buttonNumber, 
-										  final Command whileHeldCommand, final Command whenReleasedCommand) {
+	private static void setButtonBehavior(final Joystick joystick, final int buttonNumber, final Command whileHeldCommand, final Command whenReleasedCommand) {
 		final Button button = new JoystickButton(joystick, buttonNumber);
 		button.whileHeld(whileHeldCommand);
 		button.whenReleased(whenReleasedCommand);
@@ -65,9 +67,12 @@ public class JoystickController {
 		button.whenReleased(whenReleasedCommand);
 	}
 	
+	//Creates behaviors for buttons
+	
 	JoystickController(final Joystick joystick){
 		this.joystick = joystick;
 	}
+	
 	
 	public double getLeftStickX(){
 		return this.joystick.getRawAxis(0);
@@ -92,4 +97,6 @@ public class JoystickController {
 	public double getRightStickY() {
 		return this.joystick.getRawAxis(5);
 	}
+	
+	//renames getRawAxis to something that makes more sense
 }

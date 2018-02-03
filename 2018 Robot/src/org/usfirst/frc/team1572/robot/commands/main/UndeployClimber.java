@@ -27,6 +27,7 @@ public class UndeployClimber extends Command {
     protected void execute() {
     	climbRelease.unrelease();
     	done = true;
+    	//LETS GO of platform NOT UNRELEASES
     }
 
     // Make this return true when this Command no longer needs to run execute()

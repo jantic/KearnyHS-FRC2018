@@ -27,7 +27,8 @@ public class ForwardIntake extends Command {
     protected void execute() {
     	intake.runIntake(0.25);
     }
-
+    //pulls box into claw
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

@@ -27,6 +27,7 @@ public class StopClimb extends Command {
     protected void execute() {
     	climber.climb(0);
     	end = true;
+    	//turns off climber
     }
 
     // Make this return true when this Command no longer needs to run execute()

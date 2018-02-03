@@ -9,6 +9,7 @@ public class Delay extends TimedCommand {
 
     public Delay(double timeout) {
         super(timeout);
+        //creates a pause in auto code
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

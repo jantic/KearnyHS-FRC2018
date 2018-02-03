@@ -14,6 +14,7 @@ public class Climber extends Subsystem {
 	
 	public void climb(double speed) {
 		climber.set(speed);
+		//sets the speed of the climber
 		//System.out.println(speed);
 	}
 

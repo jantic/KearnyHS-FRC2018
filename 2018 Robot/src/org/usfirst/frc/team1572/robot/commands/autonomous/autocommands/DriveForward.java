@@ -17,6 +17,10 @@ public class DriveForward extends Command {
 	double distanceRemaining;
 	Drivetrain drivetrain = Robot.drivetrain;
 	
+	//|-------------------------------------|
+	//| DOESN"T WORK USE DRIVEFORWARD TIMED |
+	//|-------------------------------------|
+	
     public DriveForward(double targetDistance, double maxSpeed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

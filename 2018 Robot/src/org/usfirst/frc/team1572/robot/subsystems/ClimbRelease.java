@@ -16,9 +16,11 @@ public class ClimbRelease extends Subsystem {
     // here. Call these from Commands.
 	public void release() {
 		climbReleaser.set(Relay.Value.kOn);
+		//opens relay
 	}
 	public void unrelease() {
 		climbReleaser.set(Relay.Value.kOff);
+		//closes relay
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

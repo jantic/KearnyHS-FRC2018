@@ -31,6 +31,7 @@ public class ForkliftManual extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	forklift.moveToPosition(GetNextPos(), 1);
+    	//mets the target position
     }
 
     public double GetNextPos() {
@@ -38,7 +39,7 @@ public class ForkliftManual extends Command {
     	double targetPos = stick.getRightStickY() * RobotMap.totalTravel / 2;
     	targetPos += currentPos;
     	return targetPos;
-    	
+    	//find target position value based on position of joystick and the current position
     }
     // Called once after timeout
     protected void end() {

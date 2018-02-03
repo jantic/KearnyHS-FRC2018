@@ -30,9 +30,12 @@ public class TeleopDrive extends Command {
     	
     	double mainY = mainJoystick.getLeftStickY();
     	double mainX = mainJoystick.getRightStickX();
+    	//directional control for main
     	double overdrive = mainJoystick.getRightTrigger();
+    	//Variable to turn on overdrive
     	double coY = coPilotJoystick.getLeftStickY();
     	double coX = coPilotJoystick.getLeftStickX();
+    	//direction control for co
     	//double takeover = coPilotJoystick.getRightTrigger();
     	double normalSpeed = 0.75;
     	double normalTurn = 0.75;
@@ -40,16 +43,21 @@ public class TeleopDrive extends Command {
     	double overTurn = 0.9;
     	double coSpeed = 0.7;
     	double coTurn = 0.7;
+    	//speed values ^
+    	
     	//System.out.println("mainY" + mainY);
     	//System.out.println("mainX" + mainX);
     	if(Math.abs(coX) > 0.2 || Math.abs(coY) > 0.2) {
     		drivetrain.arcadeDriveVoltage(coX, coY, coTurn, coSpeed);
+    		//co pilot drving - takes over main, sets limited speed
     	}
     	else if(overdrive > 0.5) {
     		drivetrain.arcadeDriveVoltage(mainX, mainY, overTurn, overSpeed);
+    		//main driving - sets fast AF boi speed
     	}
     	else {
     		drivetrain.arcadeDriveVoltage(mainX, mainY, normalTurn, normalSpeed);
+    		//main driving - sets normal speed
     	}
     	//SmartDashboard.putNumber("leftEncoder", drivetrain.EncoderValue(EncoderType.left));
     	//SmartDashboard.putNumber("rightEncoder", drivetrain.EncoderValue(EncoderType.right));

@@ -16,9 +16,11 @@ public class PlatformRelease extends Subsystem {
     // here. Call these from Commands.
 	public void deploy() {
 		platform.set(Relay.Value.kOn);
+		//opens relay
 	}
 	public void undeploy() {
 		platform.set(Relay.Value.kOff);
+		//closes relay
 	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

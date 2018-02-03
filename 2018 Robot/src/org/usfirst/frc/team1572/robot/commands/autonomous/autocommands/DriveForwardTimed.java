@@ -24,35 +24,48 @@ public class DriveForwardTimed extends TimedCommand {
 
     public DriveForwardTimed(double distance, double maxSpeed, double timeout) {
     	super(timeout);
+    	//sets timeout
+    	
         requires(Robot.drivetrain);
         double feetToInches = 12;
     	double inchesTarget = -1 * distance * feetToInches;
     	this.targetDistance = drivetrain.InchesToEncoder(inchesTarget);
     	this.topSpeed = maxSpeed;
+    	//converts feet into encoders
+    	
     	SmartDashboard.putNumber("targetDistance", drivetrain.EncoderToInches(targetDistance)/feetToInches);
     	SmartDashboard.putNumber("realTargetDistance", this.targetDistance);
+    	//debug stuff
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	generateJoystickY();
+    	//generateJoystickY();
     	drivetrain.EncoderReset();
     	headingSubsystem.reset();
+    	//resets the sensors
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	final double joystickY = generateJoystickY();
     	final double joystickX = generateJoystickX();
+    	//creates speed values for drivetrain
+    	
 		//final double joystickY = 0.0;
 		//this.drivetrain.arcadeDriveVoltage(0, joystickY, 1, 0);
 	    this.drivetrain.arcadeDriveVoltage(joystickX, joystickY, 1, 1);
+	    //drives the robot forward in auto
+	    
 		final double currentDistance = this.currentDistance;
 		final double diff = (this.targetDistance - currentDistance);
 		this.distanceRemaining = diff;
 		SmartDashboard.putNumber("DistanceRemaining", this.distanceRemaining);
+		//finds how much distance remains
+		
 		/*if(Math.abs(diff) < this.angleTolerance){
 			withinTolerance = true;
 		}
@@ -77,6 +90,9 @@ public class DriveForwardTimed extends TimedCommand {
     		error = this.topTurnSpeed * -1;
     	}
     	return error;
+    	
+    	//creates value for the x-axis
+    	
     }
     private double generateJoystickY(){
     	//this.currentDistance = drivetrain.EncoderValue(EncoderType.left);
@@ -97,7 +113,7 @@ public class DriveForwardTimed extends TimedCommand {
     	//if(this.targetDistance < 0){
     	return error;
     	//}
-    	//return -error;
+    	//creates values for the y-axis
     }
 
     protected boolean isFinished() {
@@ -106,12 +122,13 @@ public class DriveForwardTimed extends TimedCommand {
     	}
 		return super.isFinished();
     }
-    
+    //if robot hits target, return true
     protected void end() {
     	SmartDashboard.putNumber("endDistance", this.currentDistance);
     	drivetrain.arcadeDriveVoltage(0, 0, 0, 0);
     }
-
+    //if is returns Finshed true, robot stops.
+    
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {

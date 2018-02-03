@@ -26,6 +26,7 @@ public class StopForklift extends Command {
     protected void execute() {
     	this.forklift.stopForklift();
     	done = true;
+    	//turns off forklift
     }
 
     // Make this return true when this Command no longer needs to run execute()

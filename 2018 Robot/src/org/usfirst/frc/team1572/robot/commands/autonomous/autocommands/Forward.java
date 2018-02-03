@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 public class Forward extends TimedCommand {
 	
 	Drivetrain drivetrain = Robot.drivetrain;
-
+	//Tester to see if robot can drive forward 
+	
     public Forward(double timeout) {
         super(timeout);
         requires(Robot.drivetrain);

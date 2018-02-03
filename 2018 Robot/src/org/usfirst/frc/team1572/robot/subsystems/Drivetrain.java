@@ -24,6 +24,7 @@ public class Drivetrain extends Subsystem {
 	Victor rightDrive = RobotMap.rightDrive;
 	Encoder leftEncoder = RobotMap.leftEncoder;
 	Encoder rightEncoder = RobotMap.rightEncoder;
+	//sets devices for drivetrain
 	double maxRPM = 3200;
 	double leftPosition = 0;
 	double rightPosition = 0;
@@ -32,7 +33,8 @@ public class Drivetrain extends Subsystem {
 	double currentTimeLeft;
 	double lastTimeRight;
 	double currentTimeRight;
-	
+	//Variables for the things
+							//x direction, y direction, turn max speed, forward max speed
 	public void arcadeDriveVoltage(double x, double y, double maxX, double maxY) {
 		x *= maxX;
 		y *= maxY;
@@ -51,6 +53,8 @@ public class Drivetrain extends Subsystem {
 		//rightMaster.set(ControlMode.PercentOutput, right);
 		leftTestMaster.set(ControlMode.PercentOutput, left);
 		rightTestMaster.set(ControlMode.PercentOutput, right);
+		//controls the direction of each side based in percentage 
+		
 		//SmartDashboard.putNumber("leftEncoder", leftTestMaster.getSelectedSensorPosition(1));
 		//SmartDashboard.putNumber("rightEncoder", rightTestMaster.getSelectedSensorPosition(1));
 		SmartDashboard.putNumber("leftEncoder", GetLeftEncoderPos());
@@ -62,7 +66,7 @@ public class Drivetrain extends Subsystem {
 		leftDrive.set(left);
 		rightDrive.set(right);
 	}
-	
+						//x direction, y direction, turn max speed, forward max speed
 	public void arcadeDriveRPM(double x, double y, double maxX, double maxY) {
 		x *= maxX;
 		y *= maxY;
@@ -80,6 +84,8 @@ public class Drivetrain extends Subsystem {
 		right *= maxRPM;
 		leftMaster.set(ControlMode.Velocity, left);
 		rightMaster.set(ControlMode.Velocity, right);
+		//sets the speed of each side based on RPM
+		
 		//make a rpm drive for Victors
 		/*System.out.println("leftMaster output percent " + leftMaster.getMotorOutputPercent());
 		System.out.println("rightMaster output percent " + rightMaster.getMotorOutputPercent());
@@ -93,12 +99,14 @@ public class Drivetrain extends Subsystem {
 		System.out.println("rightMaster output percent " + rightMaster.getMotorOutputPercent());
 		leftDrive.set(left);
 		rightDrive.set(right);
+		//directly sets the speed of side in percent
 	}
 	public void individualMotorDriveRPM(double left, double right, double MaxRPM) {
 		leftMaster.set(ControlMode.Velocity, left * MaxRPM);
 		rightMaster.set(ControlMode.Velocity, right * MaxRPM);
 		System.out.println("leftMaster output percent " + leftMaster.getMotorOutputPercent());
 		System.out.println("rightMaster output percent " + rightMaster.getMotorOutputPercent());
+		//directly sets the speed of side in RPM
 		//make a RPM drive for Victors
 		/*leftDrive.set(leftMaster.getMotorOutputPercent());
 		rightDrive.set(rightMaster.getMotorOutputPercent());*/
@@ -117,6 +125,7 @@ public class Drivetrain extends Subsystem {
 		averageDistance /= 2;
 		System.out.println(averageDistance);
 	}
+	//Gets the encoder values ^
 	
 	public double EncoderValue(EncoderType encoder) {
 		if (encoder.getDeviceNumber() == 0) {
@@ -130,7 +139,7 @@ public class Drivetrain extends Subsystem {
 		double averageDistance = leftEncoder.getDistance() + rightEncoder.getDistance();
 		averageDistance /= 2;
 		return averageDistance;
-		
+		//sets the encoder to use based on enum
 		}
 	
 	public double GetLeftEncoderPos () {
@@ -142,6 +151,7 @@ public class Drivetrain extends Subsystem {
 		this.leftPosition += positionish;
 		this.lastTimeLeft = this.currentTimeLeft;
 		return this.leftPosition;
+		//not going to lie, don't know what this does. Gets the left Encoder Position?
 	}
 	
 	public double GetRightEncoderPos () {
@@ -153,23 +163,25 @@ public class Drivetrain extends Subsystem {
 		this.rightPosition += positionish;
 		this.lastTimeRight = this.currentTimeRight;
 		return this.rightPosition;
+		//not going to lie, don't know what this does. Gets the right Encoder Position?
 	}
 	
 	public void EncoderReset() {
 		this.leftPosition = 0;
 		this.rightPosition = 0;
-		//rightEncoder.reset();
-		//leftEncoder.reset();
+		//resets the postions;
 	}
 
 	public double EncoderToInches(double encoderValue) {
 		double inches = encoderValue/this.encoderConverstion;
 		return  inches;
+		//Converts encoder into inches
 	}
 
 	public double InchesToEncoder(double inches) {
 		double encoderValue = inches * this.encoderConverstion;
 		return encoderValue;
+		//takes inches and converts into encoder pluses
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

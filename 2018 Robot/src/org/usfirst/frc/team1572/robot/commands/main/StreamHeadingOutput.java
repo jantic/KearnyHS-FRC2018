@@ -23,6 +23,7 @@ public class StreamHeadingOutput extends Command {
 	protected void execute() {
 		SmartDashboard.putNumber("Angle", this.headingSubystem.getAngle());
 		SmartDashboard.putNumber("Compass Heading", this.headingSubystem.getCompassHeading());
+		//debuging - shows sensor data
 	}
 	
 	public void streamToDashboard(){

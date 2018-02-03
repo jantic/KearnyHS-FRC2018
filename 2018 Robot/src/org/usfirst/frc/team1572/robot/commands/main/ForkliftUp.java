@@ -27,6 +27,7 @@ public class ForkliftUp extends Command {
     
     protected void execute() {
     	forklift.moveToPosition(30000, 1);
+    	//moves the forklift to this position
     	//forklift.currentPosition() + rightTrigger
     }
 
