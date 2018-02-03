@@ -6,8 +6,10 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -16,11 +18,20 @@ public class Drivetrain extends Subsystem {
 	
 	TalonSRX leftMaster = RobotMap.leftDriveMaster;
 	TalonSRX rightMaster = RobotMap.rightDriveMaster;
+	TalonSRX leftTestMaster = RobotMap.leftTestDriveMaster;
+	TalonSRX rightTestMaster = RobotMap.rightTestDriveMaster;
 	Victor leftDrive = RobotMap.leftDrive;
 	Victor rightDrive = RobotMap.rightDrive;
 	Encoder leftEncoder = RobotMap.leftEncoder;
 	Encoder rightEncoder = RobotMap.rightEncoder;
 	double maxRPM = 3200;
+	double leftPosition = 0;
+	double rightPosition = 0;
+	double encoderConverstion = 50; //set 360 to however many pulses it takes to go one inch
+	double lastTimeLeft;
+	double currentTimeLeft;
+	double lastTimeRight;
+	double currentTimeRight;
 	
 	public void arcadeDriveVoltage(double x, double y, double maxX, double maxY) {
 		x *= maxX;
@@ -38,11 +49,20 @@ public class Drivetrain extends Subsystem {
 		}
 		//leftMaster.set(ControlMode.PercentOutput, left);
 		//rightMaster.set(ControlMode.PercentOutput, right);
+		leftTestMaster.set(ControlMode.PercentOutput, left);
+		rightTestMaster.set(ControlMode.PercentOutput, right);
+		//SmartDashboard.putNumber("leftEncoder", leftTestMaster.getSelectedSensorPosition(1));
+		//SmartDashboard.putNumber("rightEncoder", rightTestMaster.getSelectedSensorPosition(1));
+		SmartDashboard.putNumber("leftEncoder", GetLeftEncoderPos());
+		SmartDashboard.putNumber("rightEncoder", GetRightEncoderPos());
+		SmartDashboard.putNumber("leftEncoderVelocity", leftTestMaster.getSelectedSensorVelocity(1));
+		SmartDashboard.putNumber("rightEncoderVelocity", rightTestMaster.getSelectedSensorVelocity(1));
 		//System.out.println("leftMaster output percent " + leftMaster.getMotorOutputPercent());
 		//System.out.println("rightMaster output percent " + rightMaster.getMotorOutputPercent());
 		leftDrive.set(left);
 		rightDrive.set(right);
 	}
+	
 	public void arcadeDriveRPM(double x, double y, double maxX, double maxY) {
 		x *= maxX;
 		y *= maxY;
@@ -113,9 +133,43 @@ public class Drivetrain extends Subsystem {
 		
 		}
 	
-	public void EncoderResest() {
-		rightEncoder.reset();
-		leftEncoder.reset();
+	public double GetLeftEncoderPos () {
+		double leftVelocity = 1 * leftTestMaster.getSelectedSensorVelocity(0);
+		this.currentTimeLeft = Timer.getFPGATimestamp();
+		double timeDifference = this.currentTimeLeft - this.lastTimeLeft;
+		timeDifference *= 10; //100 ms
+		double positionish = leftVelocity * timeDifference;
+		this.leftPosition += positionish;
+		this.lastTimeLeft = this.currentTimeLeft;
+		return this.leftPosition;
+	}
+	
+	public double GetRightEncoderPos () {
+		double rightVelocity = rightTestMaster.getSelectedSensorVelocity(0);
+		this.currentTimeRight = Timer.getFPGATimestamp();
+		double timeDifference = this.currentTimeRight - this.lastTimeRight;
+		timeDifference *= 10; //100 ms
+		double positionish = rightVelocity * timeDifference;
+		this.rightPosition += positionish;
+		this.lastTimeRight = this.currentTimeRight;
+		return this.rightPosition;
+	}
+	
+	public void EncoderReset() {
+		this.leftPosition = 0;
+		this.rightPosition = 0;
+		//rightEncoder.reset();
+		//leftEncoder.reset();
+	}
+
+	public double EncoderToInches(double encoderValue) {
+		double inches = encoderValue/this.encoderConverstion;
+		return  inches;
+	}
+
+	public double InchesToEncoder(double inches) {
+		double encoderValue = inches * this.encoderConverstion;
+		return encoderValue;
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

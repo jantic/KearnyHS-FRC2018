@@ -2,6 +2,7 @@ package org.usfirst.frc.team1572.robot.commands.main;
 
 import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.subsystems.Climber;
+import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1572.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ReverseIntake extends Command {
 	
 	Intake intake = Robot.intake;
+	Drivetrain drivetrain = Robot.drivetrain;
+	
 
     public ReverseIntake() {
         // Use requires() here to declare subsystem dependencies

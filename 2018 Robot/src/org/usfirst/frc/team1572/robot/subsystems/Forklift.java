@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1572.robot.subsystems;
 
 import org.usfirst.frc.team1572.robot.RobotMap;
+import org.usfirst.frc.team1572.robot.commands.main.ForkliftManual;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -19,8 +20,15 @@ public class Forklift extends Subsystem {
 	double bottomHighLimit = RobotMap.bottomHighLimit;
 	double topLowLimit = RobotMap.topLowLimit;
 	double topHighLimit = RobotMap.topHighLimit;
+	double totalTravel = RobotMap.totalTravel;
 	double x = 1;
 	public void moveToPosition(double position, double maxSpeed) {
+		if(position < bottomLowLimit) {
+			position = bottomLowLimit;
+		}
+		else if(position > totalTravel) {
+			position = totalTravel;
+		}
 		double top;
 		double bottom;
 		if(position > (topHighLimit - topLowLimit)) {
@@ -30,8 +38,8 @@ public class Forklift extends Subsystem {
 			top = position;
 		}
 		bottom = position - top;
-		bottomToPosition(bottom, maxSpeed);
-		topToPosition(top, maxSpeed);
+		bottomToPosition(bottom + bottomLowLimit, maxSpeed);
+		topToPosition(top + topLowLimit, maxSpeed);
 	}
 	/*
 	public double currentPosition() {
@@ -85,10 +93,18 @@ public class Forklift extends Subsystem {
 		topForklift.set(ControlMode.PercentOutput, 0);
 		bottomForklift.set(ControlMode.PercentOutput, 0);
 	}
+	
+	public double getCurrentPos() {
+		double bottomPos = bottomForklift.getSelectedSensorPosition(0); //add encoder
+		double topPos = topForklift.getSelectedSensorPosition(0);
+		double currentPos = bottomPos + topPos;
+		return currentPos;
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
+    	setDefaultCommand (new ForkliftManual());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

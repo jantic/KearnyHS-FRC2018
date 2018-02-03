@@ -24,6 +24,7 @@ import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferSwitch;
 import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoPreferSwitchCross;
 import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoScale;
 import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.Testing;
 import org.usfirst.frc.team1572.robot.commands.main.TeleopDrive;
 import org.usfirst.frc.team1572.robot.subsystems.ClimbRelease;
 import org.usfirst.frc.team1572.robot.subsystems.Climber;
@@ -99,6 +100,7 @@ public class Robot extends TimedRobot {
 		chooser.addObject("Right auto full switch", new RightAutoFullSwitch());
 		chooser.addObject("Left auto full scale", new LeftAutoFullScale());
 		chooser.addObject("Right auto full scale", new RightAutoFullScale());
+		chooser.addObject("testing", new Testing());
 		SmartDashboard.putData("Auto chooser", chooser);
 	}
 

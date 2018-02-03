@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
-import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForwardTimed;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -14,23 +14,23 @@ public class RightAutoPreferSwitchCross extends CommandGroup {
     public RightAutoPreferSwitchCross() {
        	if(Robot.ourSwitch == 'R') {
     		//Place box in switch
-    		addSequential(new DriveForward(25, 1));
-    		addSequential(new TurnToAngle(3, 60, 1));
-    		addSequential(new DriveForward(2, 1));
+    		addSequential(new DriveForwardTimed(25, 0.5, 5));
+    		addSequential(new TurnToAngle(3, -60, 1));
+    		addSequential(new DriveForwardTimed(2, 0.5, 5));
     	}
     	else if(Robot.scale == 'R') {
     		//Place box in scale
-    		addSequential(new DriveForward(18, 1));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForward(2, 1));
+    		addSequential(new DriveForwardTimed(18, 0.5, 5));
+    		addSequential(new TurnToAngle(3, -90, 1));
+    		addSequential(new DriveForwardTimed(2, 0.5, 5));
     	}
     	else {
     		//Place box in switch left
-    		addSequential(new DriveForward(18, 1));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForward(15, 1));
+    		addSequential(new DriveForwardTimed(18, 0.5, 5));
     		addSequential(new TurnToAngle(3, -90, 1));
-    		addSequential(new DriveForward(6, 1));
+    		addSequential(new DriveForwardTimed(15, 0.5, 5));
+    		addSequential(new TurnToAngle(3, 90, 1));
+    		addSequential(new DriveForwardTimed(6, 0.5, 5));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

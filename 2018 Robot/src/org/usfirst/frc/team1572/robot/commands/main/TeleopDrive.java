@@ -3,8 +3,10 @@ package org.usfirst.frc.team1572.robot.commands.main;
 import org.usfirst.frc.team1572.robot.JoystickController;
 import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1572.robot.subsystems.EncoderType;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -49,7 +51,8 @@ public class TeleopDrive extends Command {
     	else {
     		drivetrain.arcadeDriveVoltage(mainX, mainY, normalTurn, normalSpeed);
     	}
-    	
+    	//SmartDashboard.putNumber("leftEncoder", drivetrain.EncoderValue(EncoderType.left));
+    	//SmartDashboard.putNumber("rightEncoder", drivetrain.EncoderValue(EncoderType.right));
     }
 
     // Make this return true when this Command no longer needs to run execute()

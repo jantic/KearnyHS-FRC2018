@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
-import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForwardTimed;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -14,13 +14,13 @@ public class LeftAutoSwitch extends CommandGroup {
     public LeftAutoSwitch() {
     	if(Robot.ourSwitch == 'R'){
     		//drive past auto line
-    		addSequential(new DriveForward(14, 1));
+    		addSequential(new DriveForwardTimed(14, 0.5, 5));
     	}
     	else {
     		//place box in switch
-    		addSequential(new DriveForward(14, 1));
-    		addSequential(new TurnToAngle(3, -90, 1));
-    		addSequential(new DriveForward(2, 1));
+    		addSequential(new DriveForwardTimed(14, 0.5, 5));
+    		addSequential(new TurnToAngle(3, 90, 1));
+    		addSequential(new DriveForwardTimed(2, 0.5, 5));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

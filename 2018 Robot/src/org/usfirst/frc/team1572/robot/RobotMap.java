@@ -8,7 +8,9 @@
 package org.usfirst.frc.team1572.robot;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
@@ -24,15 +26,20 @@ import edu.wpi.first.wpilibj.Victor;
 public class RobotMap {
 	
 	public static TalonSRX leftDriveMaster;
-	//public static TalonSRX leftDriveSlave;
+	public static VictorSPX leftDriveSlave;
 	public static TalonSRX rightDriveMaster;
-	public static TalonSRX rightDriveSlave;
+	public static VictorSPX rightDriveSlave;
 	public static TalonSRX bottomForklift;
 	public static TalonSRX topForklift;
+	public static TalonSRX leftTestDriveMaster;
+	public static TalonSRX rightTestDriveMaster;
+	public static VictorSPX leftTestDriveSlave;
+	public static VictorSPX rightTestDriveSlave;
 	public static double bottomLowLimit = 0;
 	public static double bottomHighLimit = 22187;
 	public static double topLowLimit = 0;
 	public static double topHighLimit = 22187;
+	public static double totalTravel = (bottomHighLimit - bottomLowLimit) + (topHighLimit - topLowLimit);
 	public static Spark intake;
 	public static Victor climb;
 	//Victors for practice robot
@@ -45,11 +52,15 @@ public class RobotMap {
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
-		//leftDriveSlave = new TalonSRX(2);
+		leftDriveSlave = new VictorSPX(2);
 		rightDriveMaster = new TalonSRX(3);
-		rightDriveSlave = new TalonSRX(4);
-		bottomForklift = new TalonSRX(2);
-		topForklift = new TalonSRX(5);
+		rightDriveSlave = new VictorSPX(4);
+		bottomForklift = new TalonSRX(5);
+		topForklift = new TalonSRX(6);
+		leftTestDriveMaster = new TalonSRX(7);
+		rightTestDriveMaster = new TalonSRX(8);
+		leftTestDriveSlave = new VictorSPX(10);
+		rightTestDriveSlave = new VictorSPX(11);
 		platform = new Relay(0);
 		climbReleaser = new Relay(1);
 		intake = new Spark(2);
@@ -58,12 +69,24 @@ public class RobotMap {
 		leftDrive.setInverted(true);
 		rightDrive = new Victor(9);
 		rightDrive.setInverted(true);
-		leftDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		leftDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		leftDriveMaster.setSelectedSensorPosition(0, 0, 0);
-		//leftDriveSlave.follow(leftDriveMaster);
-		rightDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		leftDriveSlave.follow(leftDriveMaster);
+		rightDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		rightDriveMaster.setSelectedSensorPosition(0, 0, 0);
 		rightDriveSlave.follow(rightDriveMaster);
+		leftTestDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		leftTestDriveMaster.setSelectedSensorPosition(0, 0, 0);
+		leftTestDriveMaster.setInverted(true);
+		leftTestDriveMaster.setNeutralMode(NeutralMode.Brake);
+		leftTestDriveSlave.setInverted(true);
+		leftTestDriveSlave.setNeutralMode(NeutralMode.Brake);
+		leftTestDriveSlave.follow(leftTestDriveMaster);
+		rightTestDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		rightTestDriveMaster.setNeutralMode(NeutralMode.Brake);
+		rightTestDriveMaster.setSelectedSensorPosition(0, 0, 0);
+		rightTestDriveSlave.setNeutralMode(NeutralMode.Brake);
+		rightTestDriveSlave.follow(rightTestDriveMaster);
 		//add PIDF configurations for drivetrain speed control
 		//add setup for encoders
 		bottomForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
