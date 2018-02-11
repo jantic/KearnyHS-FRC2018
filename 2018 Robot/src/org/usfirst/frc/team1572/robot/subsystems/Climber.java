@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Climber extends Subsystem {
 	
-	Victor climber = RobotMap.climb;
+	Victor leftClimber = RobotMap.leftClimb;
+	Victor rightClimber = RobotMap.rightClimb;
 	
 	public void climb(double speed) {
-		climber.set(speed);
+		leftClimber.set(speed);
+		rightClimber.set(speed);
 		//sets the speed of the climber
 		//System.out.println(speed);
 	}

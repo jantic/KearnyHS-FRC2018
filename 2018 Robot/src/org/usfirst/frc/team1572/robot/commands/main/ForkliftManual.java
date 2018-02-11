@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ForkliftManual extends Command {
 
-	JoystickController stick = JoystickController.COPILOT_JOYSTICK;
+	JoystickController stick = JoystickController.MAIN_JOYSTICK;
 	Forklift forklift = Robot.forklift;
 	//double targetPostion;
 	

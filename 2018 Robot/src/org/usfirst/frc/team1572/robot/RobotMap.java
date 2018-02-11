@@ -12,8 +12,10 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Victor;
 
@@ -40,8 +42,10 @@ public class RobotMap {
 	public static double topLowLimit = 0;
 	public static double topHighLimit = 22187;
 	public static double totalTravel = (bottomHighLimit - bottomLowLimit) + (topHighLimit - topLowLimit);
-	public static Spark intake;
-	public static Victor climb;
+	public static Spark leftIntake;
+	public static Spark rightIntake;
+	public static Victor leftClimb;
+	public static Victor rightClimb;
 	//Victors for practice robot
 	public static Victor leftDrive;
 	public static Victor rightDrive;
@@ -49,6 +53,8 @@ public class RobotMap {
 	public static Encoder rightEncoder;
 	public static Relay platform;
 	public static Relay climbReleaser;
+	public static Solenoid climbRelease;
+	public static Solenoid platformRelease;
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
@@ -63,14 +69,19 @@ public class RobotMap {
 		rightTestDriveSlave = new VictorSPX(11);
 		platform = new Relay(0);
 		climbReleaser = new Relay(1);
-		intake = new Spark(2);
-		climb = new Victor(1);
+		leftIntake = new Spark(2);
+		rightIntake = new Spark(3);
+		leftClimb = new Victor(0);
+		leftClimb.setInverted(true);
+		rightClimb = new Victor(1);
 		leftDrive = new Victor(8);
 		leftDrive.setInverted(true);
 		rightDrive = new Victor(9);
 		rightDrive.setInverted(true);
 		leftDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		leftDriveMaster.setSelectedSensorPosition(0, 0, 0);
+		leftDriveMaster.setInverted(true);
+		leftDriveSlave.setInverted(true);
 		leftDriveSlave.follow(leftDriveMaster);
 		rightDriveMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 		rightDriveMaster.setSelectedSensorPosition(0, 0, 0);
@@ -93,6 +104,8 @@ public class RobotMap {
 		bottomForklift.setSelectedSensorPosition(0, 0, 0);
 		topForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		topForklift.setSelectedSensorPosition(0, 0, 0);
+		climbRelease = new Solenoid(0);
+		platformRelease = new Solenoid(1);
 	}
 	
 	// For example to map the left and right motors, you could define the

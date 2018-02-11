@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 	
-	Spark intake = RobotMap.intake;
+	Spark leftIntake = RobotMap.leftIntake;
+	Spark rightIntake = RobotMap.rightIntake;
 	
 	public void runIntake(double speed) {
-		intake.set(speed);
+		leftIntake.set(speed);
+		rightIntake.set(speed);
 	}
 	//sets speed of intake
     // Put methods for controlling this subsystem

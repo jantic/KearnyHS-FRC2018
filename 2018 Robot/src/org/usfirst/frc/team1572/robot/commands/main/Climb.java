@@ -24,7 +24,7 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.climb(0.25);
+    	climber.climb(1);
     	//turns on climb motor
     }
 

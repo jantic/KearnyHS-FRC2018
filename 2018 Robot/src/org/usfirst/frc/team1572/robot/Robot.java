@@ -176,6 +176,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("bot pos", forklift.bottomPosition());
 		//forklift.moveToPosition(30000, 1);
 	}
 

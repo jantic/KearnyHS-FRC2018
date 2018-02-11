@@ -26,7 +26,7 @@ public class Forward extends TimedCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.arcadeDriveVoltage(0, -0.4, 1, 1);
+    	drivetrain.arcadeDriveVoltage(0, -0.95, 1, 1);
     	
     }
 

@@ -32,6 +32,7 @@ public class TeleopDrive extends Command {
     	double mainX = mainJoystick.getRightStickX();
     	//directional control for main
     	double overdrive = mainJoystick.getRightTrigger();
+    	double underdrive = mainJoystick.getLeftTrigger();
     	//Variable to turn on overdrive
     	double coY = coPilotJoystick.getLeftStickY();
     	double coX = coPilotJoystick.getLeftStickX();
@@ -39,10 +40,12 @@ public class TeleopDrive extends Command {
     	//double takeover = coPilotJoystick.getRightTrigger();
     	double normalSpeed = 0.75;
     	double normalTurn = 0.75;
+    	double underSpeed = 0.5;
+    	double underTurn = 0.5;
     	double overSpeed = 1;
     	double overTurn = 0.9;
-    	double coSpeed = 0.7;
-    	double coTurn = 0.7;
+    	double coSpeed = 0.6;
+    	double coTurn = 0.6;
     	//speed values ^
     	
     	//System.out.println("mainY" + mainY);
@@ -50,6 +53,9 @@ public class TeleopDrive extends Command {
     	if(Math.abs(coX) > 0.2 || Math.abs(coY) > 0.2) {
     		drivetrain.arcadeDriveVoltage(coX, coY, coTurn, coSpeed);
     		//co pilot drving - takes over main, sets limited speed
+    	}
+    	else if(underdrive > 0.5) {
+    		drivetrain.arcadeDriveVoltage(mainX, mainY, underTurn, underSpeed);
     	}
     	else if(overdrive > 0.5) {
     		drivetrain.arcadeDriveVoltage(mainX, mainY, overTurn, overSpeed);

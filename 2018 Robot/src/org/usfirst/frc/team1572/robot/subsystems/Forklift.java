@@ -50,13 +50,13 @@ public class Forklift extends Subsystem {
 		return currentPosition;
 	}
 	*/
-	double bottomPosition() {
+	public double bottomPosition() {
 		double bottomPosition = bottomForklift.getSelectedSensorPosition(0);
 		SmartDashboard.putNumber("bottomPosition", bottomPosition);
 		return bottomPosition;
 		//gets the position of the bottom
 	}
-	double topPosition() {
+	public double topPosition() {
 		double topPosition = topForklift.getSelectedSensorPosition(0);
 		SmartDashboard.putNumber("topPosition", topPosition);
 		return topPosition;
@@ -69,7 +69,7 @@ public class Forklift extends Subsystem {
 		difference *= 1;
 		difference *= maxSpeed;
 		//if (position > bottomPosition()) {
-			bottomForklift.set(ControlMode.PercentOutput, difference);
+			//bottomForklift.set(ControlMode.PercentOutput, difference);
 			//sends bottom part the forklift to a position
 		//}
 		/*else {
@@ -86,7 +86,7 @@ public class Forklift extends Subsystem {
 		difference *= 1;
 		difference *= maxSpeed;
 		//if (position > topPosition()) {
-			topForklift.set(ControlMode.PercentOutput, difference);
+			//topForklift.set(ControlMode.PercentOutput, difference);
 			//sets the top part of a forklift to a positon
 		//}
 		//else {
@@ -113,7 +113,7 @@ public class Forklift extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-    	setDefaultCommand (new ForkliftManual());
+    	//setDefaultCommand (new ForkliftManual());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

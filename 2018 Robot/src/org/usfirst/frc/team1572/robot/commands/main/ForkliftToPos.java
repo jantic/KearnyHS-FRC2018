@@ -28,7 +28,7 @@ public class ForkliftToPos extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	forklift.moveToPosition(this.position, 0.5);
+    	forklift.moveToPosition(this.position, 1);
     	//sets the position based on parameter value - USE FOR AUTO
     }
     

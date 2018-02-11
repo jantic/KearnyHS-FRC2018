@@ -49,18 +49,18 @@ public class Drivetrain extends Subsystem {
 			left /= Math.abs(right);
 			right /= Math.abs(right);
 		}
-		//leftMaster.set(ControlMode.PercentOutput, left);
-		//rightMaster.set(ControlMode.PercentOutput, right);
-		leftTestMaster.set(ControlMode.PercentOutput, left);
-		rightTestMaster.set(ControlMode.PercentOutput, right);
+		leftMaster.set(ControlMode.PercentOutput, left);
+		rightMaster.set(ControlMode.PercentOutput, right);
+		//leftTestMaster.set(ControlMode.PercentOutput, left);
+		//rightTestMaster.set(ControlMode.PercentOutput, right);
 		//controls the direction of each side based in percentage 
 		
 		//SmartDashboard.putNumber("leftEncoder", leftTestMaster.getSelectedSensorPosition(1));
 		//SmartDashboard.putNumber("rightEncoder", rightTestMaster.getSelectedSensorPosition(1));
 		SmartDashboard.putNumber("leftEncoder", GetLeftEncoderPos());
 		SmartDashboard.putNumber("rightEncoder", GetRightEncoderPos());
-		SmartDashboard.putNumber("leftEncoderVelocity", leftTestMaster.getSelectedSensorVelocity(1));
-		SmartDashboard.putNumber("rightEncoderVelocity", rightTestMaster.getSelectedSensorVelocity(1));
+		SmartDashboard.putNumber("leftEncoderVelocity", leftMaster.getSelectedSensorVelocity(1));
+		SmartDashboard.putNumber("rightEncoderVelocity", rightMaster.getSelectedSensorVelocity(1));
 		//System.out.println("leftMaster output percent " + leftMaster.getMotorOutputPercent());
 		//System.out.println("rightMaster output percent " + rightMaster.getMotorOutputPercent());
 		leftDrive.set(left);
@@ -143,7 +143,7 @@ public class Drivetrain extends Subsystem {
 		}
 	
 	public double GetLeftEncoderPos () {
-		double leftVelocity = 1 * leftTestMaster.getSelectedSensorVelocity(0);
+		double leftVelocity = 1 * leftMaster.getSelectedSensorVelocity(0);
 		this.currentTimeLeft = Timer.getFPGATimestamp();
 		double timeDifference = this.currentTimeLeft - this.lastTimeLeft;
 		timeDifference *= 10; //100 ms
@@ -155,7 +155,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public double GetRightEncoderPos () {
-		double rightVelocity = rightTestMaster.getSelectedSensorVelocity(0);
+		double rightVelocity = rightMaster.getSelectedSensorVelocity(0);
 		this.currentTimeRight = Timer.getFPGATimestamp();
 		double timeDifference = this.currentTimeRight - this.lastTimeRight;
 		timeDifference *= 10; //100 ms

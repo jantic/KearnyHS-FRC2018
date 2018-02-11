@@ -13,7 +13,7 @@ public class DeployClimber extends Command {
     public DeployClimber() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.platformRelease);
+    	requires(Robot.climbRelease);
     	
     	
     }
