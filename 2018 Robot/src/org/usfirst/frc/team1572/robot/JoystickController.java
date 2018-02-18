@@ -38,12 +38,13 @@ public class JoystickController {
 		//setButtonPressBehavior(joystick, 0, new Record(), new StopRecording());
 		//setButtonBehavior(joystick, , new GearGrabOpen(), new GearGrabClose());
 		setButtonPressBehavior(joystick, 3, new Climb(), new StopClimb());
-		setButtonBehavior(joystick, 5, new ForwardIntake(20), new StopIntake());
+		//setButtonBehavior(joystick, 5, new ForwardIntake(20), new StopIntake());
+		setButtonBehavior(joystick, 5, new TwistIntake(20, 0.4, 0.9), new StopIntake()); // this works better than both sides forward
 		setButtonBehavior(joystick, 6, new ReverseIntake(20), new StopIntake());
 		setButtonPressBehavior(joystick, 7, new DeployPlatform(), new UndeployPlatform());
 		setButtonPressBehavior(joystick, 8, new DeployClimber(), new UndeployClimber());
 		setButtonPressBehavior(joystick, 4, new ForkliftUp(2));
-		setButtonPressBehavior(joystick, 1, new ForkliftDownReset(1));
+		setButtonPressBehavior(joystick, 1, new ForkliftDownReset(2));
 		//setButtonPressBehavior(joystick, 2, new ForkliftToPos(12000, 2));
 		setButtonPressBehavior(joystick, 2, new ForkliftSwitchHeight(2));
 		return new JoystickController(joystick);
@@ -53,12 +54,12 @@ public class JoystickController {
 
 	private static JoystickController generateCoPilotJoystick(){
 		final Joystick joystick = new Joystick(1);
-		setButtonPressBehavior(joystick, 1, new ResetForkliftEncoders());
-		setButtonBehavior(joystick, 5, new TwistIntake(20, 0.75, -.5), new StopIntake());
-		setButtonBehavior(joystick, 6, new TwistIntake(20, -.5, 0.75), new StopIntake());
-		setButtonBehavior(joystick, 2, new TwistIntake(20, 0.75, 0.6), new StopIntake());
-		setButtonPressBehavior(joystick, 3, new ForkliftDownReset(1));
-		//setButtonBehavior(joystick, JoystickButtonMap.six, new ShootClose(), new StopShooting());
+		//setButtonPressBehavior(joystick, 1, new ResetForkliftEncoders());
+		setButtonBehavior(joystick, 5, new ForwardIntake(120, 0.4), new StopIntake());
+		//setButtonBehavior(joystick, 5, new TwistIntake(20, 0.75, -.5), new StopIntake());
+		//setButtonBehavior(joystick, 6, new TwistIntake(20, -.5, 0.75), new StopIntake());
+		//setButtonBehavior(joystick, 2, new TwistIntake(20, 0.75, 0.6), new StopIntake());
+		setButtonPressBehavior(joystick, 3, new ForkliftDownReset(2));
 		//set buttom controls for Co controller
 		return new JoystickController(joystick);
 	}

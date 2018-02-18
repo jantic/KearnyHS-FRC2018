@@ -49,8 +49,8 @@ public class Drivetrain extends Subsystem {
 			left /= Math.abs(right);
 			right /= Math.abs(right);
 		}
-		//leftMaster.set(ControlMode.PercentOutput, left);
-		//rightMaster.set(ControlMode.PercentOutput, right);
+		leftMaster.set(ControlMode.PercentOutput, left);
+		rightMaster.set(ControlMode.PercentOutput, right);
 		//leftTestMaster.set(ControlMode.PercentOutput, left);
 		//rightTestMaster.set(ControlMode.PercentOutput, right);
 		//controls the direction of each side based in percentage 

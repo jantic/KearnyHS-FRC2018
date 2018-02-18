@@ -13,12 +13,14 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 public class ForwardIntake extends Command {
 	
 	Intake intake = Robot.intake;
+	double power;
 
-    public ForwardIntake(double timeout) {
+    public ForwardIntake(double timeout, double speed) {
     	super(timeout);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
+    	this.power = speed;
     }
 
     // Called just before this Command runs the first time
@@ -27,7 +29,7 @@ public class ForwardIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	intake.runIntake(0.9);
+    	intake.runIntake(this.power);
     }
     //pulls box into claw
     

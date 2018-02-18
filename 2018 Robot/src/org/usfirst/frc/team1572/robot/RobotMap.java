@@ -38,7 +38,7 @@ public class RobotMap {
 	public static TalonSRX rightTestDriveMaster;
 	public static VictorSPX leftTestDriveSlave;
 	public static VictorSPX rightTestDriveSlave;
-	public static double bottomLowLimit = 20000;
+	public static double bottomLowLimit = 22000;
 	public static double bottomHighLimit = 80000;
 	public static double topLowLimit = 1200;
 	public static double topHighLimit = 29000;
