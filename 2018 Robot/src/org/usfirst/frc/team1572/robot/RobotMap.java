@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
@@ -37,10 +38,10 @@ public class RobotMap {
 	public static TalonSRX rightTestDriveMaster;
 	public static VictorSPX leftTestDriveSlave;
 	public static VictorSPX rightTestDriveSlave;
-	public static double bottomLowLimit = 0;
-	public static double bottomHighLimit = 22187;
-	public static double topLowLimit = 0;
-	public static double topHighLimit = 22187;
+	public static double bottomLowLimit = 20000;
+	public static double bottomHighLimit = 80000;
+	public static double topLowLimit = 1200;
+	public static double topHighLimit = 29000;
 	public static double totalTravel = (bottomHighLimit - bottomLowLimit) + (topHighLimit - topLowLimit);
 	public static Spark leftIntake;
 	public static Spark rightIntake;
@@ -55,6 +56,7 @@ public class RobotMap {
 	public static Relay climbReleaser;
 	public static Solenoid climbRelease;
 	public static Solenoid platformRelease;
+	public static DigitalInput forkliftReset;
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
@@ -100,12 +102,13 @@ public class RobotMap {
 		rightTestDriveSlave.follow(rightTestDriveMaster);
 		//add PIDF configurations for drivetrain speed control
 		//add setup for encoders
-		bottomForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
+		bottomForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		bottomForklift.setSelectedSensorPosition(0, 0, 0);
 		topForklift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 0);
 		topForklift.setSelectedSensorPosition(0, 0, 0);
 		climbRelease = new Solenoid(0);
 		platformRelease = new Solenoid(1);
+		forkliftReset = new DigitalInput(0);
 	}
 	
 	// For example to map the left and right motors, you could define the

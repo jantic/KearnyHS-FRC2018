@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.Delay;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForwardTimed;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
@@ -14,17 +15,30 @@ public class LeftAutoFullSwitch extends CommandGroup {
     public LeftAutoFullSwitch() {
     	if(Robot.ourSwitch == 'L') {
     		//place box in switch left plate
-    		addSequential(new DriveForwardTimed(14, 0.5, 5));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		//addSequential(new DriveForwardTimed(14, 0.5, 5));
+    		//addSequential(new TurnToAngle(3, 90, 1));
+    		//addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		
+    		//place box in switch left plate
+    		addSequential(new DriveForwardTimed(14-2.3, 0.7, 4));
+    		addSequential(new Delay(0.25));
+    		addSequential(new TurnToAngle(1, 90, 0.75));
+    		//addSequential(new Delay(0.25));
+    		addSequential(new DriveForwardTimed(0.5, 0.5, 4));
     	}
     	else {
     		//go around switch and place box in switch right plate
-    		addSequential(new DriveForwardTimed(18, 0.5, 5));
-    		addSequential(new TurnToAngle(3, 90, 1));
+    		//addSequential(new DriveForwardTimed(18, 0.5, 5));
+    		//addSequential(new TurnToAngle(3, 90, 1));
+    		//addSequential(new DriveForwardTimed(14, 0.5, 5));
+    		//addSequential(new TurnToAngle(3, 90, 1));
+    		//addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		addSequential(new DriveForwardTimed(18, 0.5, 5));//add 1 to 2 feet to account for boxes
+    		addSequential(new Delay(0.25));
+    		addSequential(new TurnToAngle(3, 90, 0.73));
     		addSequential(new DriveForwardTimed(14, 0.5, 5));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		addSequential(new Delay(0.25));
+    		addSequential(new TurnToAngle(3, 90, 0.75));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

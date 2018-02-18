@@ -28,7 +28,7 @@ public class Drivetrain extends Subsystem {
 	double maxRPM = 3200;
 	double leftPosition = 0;
 	double rightPosition = 0;
-	double encoderConverstion = 50; //set 360 to however many pulses it takes to go one inch
+	double encoderConverstion = 63.5; //set 50 to however many pulses it takes to go one inch
 	double lastTimeLeft;
 	double currentTimeLeft;
 	double lastTimeRight;
@@ -49,8 +49,8 @@ public class Drivetrain extends Subsystem {
 			left /= Math.abs(right);
 			right /= Math.abs(right);
 		}
-		leftMaster.set(ControlMode.PercentOutput, left);
-		rightMaster.set(ControlMode.PercentOutput, right);
+		//leftMaster.set(ControlMode.PercentOutput, left);
+		//rightMaster.set(ControlMode.PercentOutput, right);
 		//leftTestMaster.set(ControlMode.PercentOutput, left);
 		//rightTestMaster.set(ControlMode.PercentOutput, right);
 		//controls the direction of each side based in percentage 

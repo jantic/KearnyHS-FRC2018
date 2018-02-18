@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1572.robot.commands.autonomous;
 
 import org.usfirst.frc.team1572.robot.Robot;
+import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.Delay;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForwardTimed;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
 
@@ -14,9 +15,16 @@ public class LeftAutoPreferSwitch extends CommandGroup {
     public LeftAutoPreferSwitch() {
     	if(Robot.ourSwitch == 'L') {
     		//Place box in switch
-    		addSequential(new DriveForwardTimed(14, 0.5, 5));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		//addSequential(new DriveForwardTimed(14, 0.5, 5));
+    		//addSequential(new TurnToAngle(3, 90, 1));
+    		//addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		
+    		//place box in switch left plate
+    		addSequential(new DriveForwardTimed(14-2.3, 0.7, 3));
+    		addSequential(new Delay(0.25));
+    		addSequential(new TurnToAngle(1, 90, 0.75));
+    		//addSequential(new Delay(0.25));
+    		addSequential(new DriveForwardTimed(0.5, 0.5, 3));
     	}
     	else if(Robot.scale == 'L') {
     		//Place box in scale

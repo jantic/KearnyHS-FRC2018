@@ -8,6 +8,8 @@
 package org.usfirst.frc.team1572.robot;
 
 import org.usfirst.frc.team1572.robot.commands.autonomous.AutoLine;
+import org.usfirst.frc.team1572.robot.commands.autonomous.CenterAutoFullSwitch;
+import org.usfirst.frc.team1572.robot.commands.autonomous.CenterAutoTwoBox;
 import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoFullScale;
 import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoFullSwitch;
 import org.usfirst.frc.team1572.robot.commands.autonomous.LeftAutoPreferScale;
@@ -64,6 +66,7 @@ public class Robot extends TimedRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -84,6 +87,8 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		chooser = new SendableChooser<Command>();
 		chooser.addDefault("Auto line", new AutoLine());
+		chooser.addDefault("Center auto 2 boxes", new CenterAutoTwoBox());
+		chooser.addDefault("Center auto switch", new CenterAutoFullSwitch());
 		chooser.addObject("Left auto switch", new LeftAutoSwitch());
 		chooser.addObject("Right auto switch", new RightAutoSwitch());
 		chooser.addObject("Left auto scale", new LeftAutoScale());
@@ -101,6 +106,7 @@ public class Robot extends TimedRobot {
 		chooser.addObject("Left auto full scale", new LeftAutoFullScale());
 		chooser.addObject("Right auto full scale", new RightAutoFullScale());
 		chooser.addObject("testing", new Testing());
+		
 		SmartDashboard.putData("Auto chooser", chooser);
 	}
 
@@ -135,11 +141,84 @@ public class Robot extends TimedRobot {
 		
 		String colors;
 		colors = DriverStation.getInstance().getGameSpecificMessage();
-		ourSwitch = colors.charAt(0);
-		scale = colors.charAt(1);
+		if(colors.length() > 0) {
+			ourSwitch = colors.charAt(0);
+			String daSwitch = Character.toString(ourSwitch);
+			SmartDashboard.putString("daSwitch", daSwitch);
+			scale = colors.charAt(1);
+			String daScale = Character.toString(scale);
+			SmartDashboard.putString("daScale", daScale);
+		}
+		SmartDashboard.putString("game data", colors);
 		autonomousCommand = chooser.getSelected();
 		System.out.println(autonomousCommand.getName());
-		autonomousCommand.start();
+		//autonomousCommand.start();
+		String autoSelected = chooser.getSelected().getName();
+		SmartDashboard.putString("autoSelected", autoSelected);
+		Command autonomousCommand2 = null;
+		switch(autoSelected) {
+		case "Testing":
+			autonomousCommand2 = new Testing();
+			break;
+		case "AutoLine":
+			autonomousCommand2 = new AutoLine();
+			break;
+		case "CenterAutoFullSwitch":
+			autonomousCommand2 = new CenterAutoFullSwitch();
+			break;
+		case "CenterAutoTwoBox":
+			autonomousCommand2 = new CenterAutoTwoBox();
+			break;
+		case "LeftAutoFullScale":
+			autonomousCommand2 = new LeftAutoFullScale();
+			break;
+		case "LeftAutoFullSwitch":
+			autonomousCommand2 = new LeftAutoFullSwitch();
+			break;
+		case "LeftAutoPreferScale":
+			autonomousCommand2 = new LeftAutoPreferScale();
+			break;
+		case "LeftAutoPreferScaleCross":
+			autonomousCommand2 = new LeftAutoPreferScaleCross();
+			break;
+		case "LeftAutoPreferSwitch":
+			autonomousCommand2 = new LeftAutoPreferSwitch();
+			break;
+		case "LeftAutoPreferSwitchCross":
+			autonomousCommand2 = new LeftAutoPreferSwitchCross();
+			break;
+		case "LeftAutoScale":
+			autonomousCommand2 = new LeftAutoScale();
+			break;
+		case "LeftAutoSwitch":
+			autonomousCommand2 = new LeftAutoSwitch();
+			break;
+		case "RightAutoFullScale":
+			autonomousCommand2 = new RightAutoFullScale();
+			break;
+		case "RightAutoFullSwitch":
+			autonomousCommand2 = new RightAutoFullSwitch();
+			break;
+		case "RightAutoPreferScale":
+			autonomousCommand2 = new RightAutoPreferScale();
+			break;
+		case "RightAutoPrferScaleCross":
+			autonomousCommand2 = new RightAutoPreferScaleCross();
+			break;	
+		case "RightAutoPreferSwitch":
+			autonomousCommand2 = new RightAutoPreferSwitch();
+			break;
+		case "RightAutoPreferSwitchCross":
+			autonomousCommand2 = new RightAutoPreferSwitchCross();
+			break;
+		case "RightAutoScale":
+			autonomousCommand2 = new RightAutoScale();
+			break;
+		case "RightAutoSwitch":
+			autonomousCommand2 = new RightAutoSwitch();
+			break;
+		}
+		autonomousCommand2.start();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -177,6 +256,9 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("bot pos", forklift.bottomPosition());
+		SmartDashboard.putNumber("top pos", forklift.topPosition());
+		SmartDashboard.putNumber("position", forklift.getCurrentPos());
+		SmartDashboard.putBoolean("switch activated", RobotMap.forkliftReset.get());
 		//forklift.moveToPosition(30000, 1);
 	}
 

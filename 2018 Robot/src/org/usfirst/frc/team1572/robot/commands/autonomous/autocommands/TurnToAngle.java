@@ -24,8 +24,8 @@ public class TurnToAngle extends TimedCommand {
         super(timeout);
         this.targetAngle = angle;
         this.turnSpeed = maxSpeed;
-        if (this.turnSpeed > 0.5) {
-        	this.turnSpeed = 0.5;
+        if (this.turnSpeed > 1) {
+        	this.turnSpeed = 1;
         }
         //sets parameters to private variables
         // Use requires() here to declare subsystem dependencies
@@ -63,15 +63,21 @@ public class TurnToAngle extends TimedCommand {
 	private double generateJoystickX(){
 		this.currentAngle = headingSubsystem.getAngle();
 		double error = this.targetAngle - this.currentAngle;
-		error/=this.targetAngle;
-		error*= 1.16; 
+		error/=Math.abs(this.targetAngle);
+		error*= 1.05; 
 		error*= this.turnSpeed;
 		if (Math.abs(error) > this.turnSpeed) {
-			error = turnSpeed;
+			if (error > 0) {
+				error = turnSpeed;
+			}
+			 
+			else {
+				error = -turnSpeed;
+			}
 		}
-		if(this.targetAngle < 0){
-		return -error;
-		}
+		//if(this.targetAngle < 0){
+		//return -error;
+		//}
 		return error;
 		//creates value for x axis based on angle remaining
 	}

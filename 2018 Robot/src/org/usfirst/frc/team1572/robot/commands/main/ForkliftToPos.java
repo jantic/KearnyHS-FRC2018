@@ -14,10 +14,11 @@ public class ForkliftToPos extends Command {
 	Forklift forklift = Robot.forklift;
 	double position;
 						//the position to go
-    public ForkliftToPos(double position) {
+    public ForkliftToPos(double position, double timeout) {
+    	super(timeout);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(forklift);
+    	requires(Robot.forklift);
     	this.position = position;
     }
 
@@ -34,7 +35,7 @@ public class ForkliftToPos extends Command {
     
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return super.isTimedOut();
     }
 
     // Called once after isFinished returns true

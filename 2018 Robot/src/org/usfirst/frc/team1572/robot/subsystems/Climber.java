@@ -14,8 +14,8 @@ public class Climber extends Subsystem {
 	Victor rightClimber = RobotMap.rightClimb;
 	
 	public void climb(double speed) {
-		leftClimber.set(speed);
-		rightClimber.set(speed);
+		//leftClimber.set(speed);
+		//rightClimber.set(speed);
 		//sets the speed of the climber
 		//System.out.println(speed);
 	}

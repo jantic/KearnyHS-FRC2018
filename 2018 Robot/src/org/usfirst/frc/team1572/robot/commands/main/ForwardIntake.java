@@ -5,6 +5,7 @@ import org.usfirst.frc.team1572.robot.subsystems.Climber;
 import org.usfirst.frc.team1572.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**
  *
@@ -13,7 +14,8 @@ public class ForwardIntake extends Command {
 	
 	Intake intake = Robot.intake;
 
-    public ForwardIntake() {
+    public ForwardIntake(double timeout) {
+    	super(timeout);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
@@ -25,17 +27,18 @@ public class ForwardIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	intake.runIntake(0.25);
+    	intake.runIntake(0.9);
     }
     //pulls box into claw
     
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return super.isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	intake.runIntake(0);
     }
 
     // Called when another command which requires one or more of the same

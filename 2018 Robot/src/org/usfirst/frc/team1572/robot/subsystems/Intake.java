@@ -17,6 +17,10 @@ public class Intake extends Subsystem {
 		leftIntake.set(speed);
 		rightIntake.set(speed);
 	}
+	public void runIntakeSeparate(double leftSpeed, double rightSpeed) {
+		leftIntake.set(leftSpeed);
+		rightIntake.set(rightSpeed);
+	}
 	//sets speed of intake
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

@@ -96,7 +96,7 @@ public class DriveForwardTimed extends TimedCommand {
     }
     private double generateJoystickY(){
     	//this.currentDistance = drivetrain.EncoderValue(EncoderType.left);
-    	this.currentDistance = drivetrain.GetLeftEncoderPos();
+    	this.currentDistance = -drivetrain.GetRightEncoderPos();
     	double error = this.targetDistance - this.currentDistance;
     	SmartDashboard.putNumber("error", error);
     	error /= Math.abs(this.targetDistance);

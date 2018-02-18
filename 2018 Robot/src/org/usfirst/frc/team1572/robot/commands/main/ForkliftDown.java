@@ -2,6 +2,7 @@ package org.usfirst.frc.team1572.robot.commands.main;
 
 import org.usfirst.frc.team1572.robot.JoystickController;
 import org.usfirst.frc.team1572.robot.Robot;
+import org.usfirst.frc.team1572.robot.RobotMap;
 import org.usfirst.frc.team1572.robot.subsystems.Forklift;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,8 +15,8 @@ public class ForkliftDown extends Command {
 	Forklift forklift = Robot.forklift;
 	JoystickController mainJoystick = JoystickController.MAIN_JOYSTICK;
     JoystickController coPilotJoystick = JoystickController.COPILOT_JOYSTICK;
-    public ForkliftDown() {
-        super();
+    public ForkliftDown(double timeout) {
+        super(timeout);
         requires(Robot.forklift);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -28,7 +29,8 @@ public class ForkliftDown extends Command {
     
     protected void execute() {
     	//double leftTrigger = coPilotJoystick.getLeftTrigger();
-    	forklift.moveToPosition(0, 1);
+    	forklift.moveToPosition(RobotMap.topLowLimit, 1);
+    	
     	//forklift.currentPosition() - leftTrigger
     	//brings down the forklift to lowest position
     }
@@ -36,7 +38,11 @@ public class ForkliftDown extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		//return false;
+		return super.isTimedOut();
+	}
+	
+	protected void end() {
 	}
     
 }

@@ -20,17 +20,21 @@ public class CenterAutoFullSwitch extends CommandGroup {
     	if(Robot.ourSwitch == 'L') {
     		//place box in switch left plate
     		addSequential(new DriveForwardTimed(4, 0.5, 5));
-    		addSequential(new TurnToAngle(3, -90, 1));
-    		addSequential(new DriveForwardTimed(4.5, 0.5, 5));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForwardTimed(2, 0.5, 5));
+    		addSequential(new Delay(0.1));
+    		addSequential(new TurnToAngle(3, -90, 0.68));
+    		addSequential(new DriveForwardTimed(3.5, 0.5, 5));
+    		addSequential(new Delay(0.1));
+    		addSequential(new TurnToAngle(3, 90, 0.68));
+    		//addSequential(new DriveForwardTimed(2, 0.5, 5));
     	}
-    	else {
+    	else if (Robot.ourSwitch == 'R') {
     		//place box in switch right plate
     		addSequential(new DriveForwardTimed(4, 0.5, 5));
-    		addSequential(new TurnToAngle(3, 90, 1));
-    		addSequential(new DriveForwardTimed(4.5, 0.5, 5));
-    		addSequential(new TurnToAngle(3, -90, 1));
+    		addSequential(new Delay(0.1));
+    		addSequential(new TurnToAngle(3, 90, 0.68));
+    		addSequential(new DriveForwardTimed(4, 0.5, 5));
+    		addSequential(new Delay(0.1));
+    		addSequential(new TurnToAngle(3, -90, 0.68)); //was 75
     		addSequential(new DriveForwardTimed(2, 0.5, 5));
     	}
         // Add Commands here:

@@ -6,20 +6,21 @@ import org.usfirst.frc.team1572.robot.RobotMap;
 import org.usfirst.frc.team1572.robot.subsystems.Forklift;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class ForkliftManual extends Command {
 
-	JoystickController stick = JoystickController.MAIN_JOYSTICK;
+	JoystickController stick = JoystickController.COPILOT_JOYSTICK;
 	Forklift forklift = Robot.forklift;
 	//double targetPostion;
 	
     public ForkliftManual() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(forklift);
+        requires(Robot.forklift);
     }
 
     // Called just before this Command runs the first time
@@ -30,7 +31,34 @@ public class ForkliftManual extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	forklift.moveToPosition(GetNextPos(), 1);
+    	double currentPosition = forklift.bottomPosition() + forklift.topPosition();
+    	currentPosition -= RobotMap.bottomLowLimit;
+    	currentPosition -= RobotMap.topLowLimit;
+    	SmartDashboard.putNumber("current position", currentPosition);
+    	/*if(Math.abs(stick.getRightStickY()) < 0.2) {
+    		forklift.moveToPosition(currentPosition, 1);
+    	}
+    	else{*/
+    		//forklift.moveManually(stick.getRightStickY() * -0.4);
+    	if(Math.abs(stick.getRightTrigger()) < 0.2) {
+    		forklift.bottomToPosition(forklift.bottomBrakePosition(), 1);
+    	}
+    	else if(forklift.bottomPosition() >= 72000 && forklift.bottomPosition() <= 79000 && stick.getRightTrigger() < 0) {
+    		forklift.moveManually(stick.getRightTrigger() * -0.2);
+    		forklift.changeBottomBrakePosition(forklift.bottomPosition());
+    	}
+    	else if(forklift.bottomPosition() <= 0 && stick.getRightTrigger() > 0 || forklift.bottomPosition() >= 79000 && stick.getRightTrigger() < 0) {
+    		forklift.moveManually(0);
+    		forklift.changeBottomBrakePosition(forklift.bottomPosition());
+    	}
+    	else {
+    		forklift.moveManually(stick.getRightTrigger() * -0.4);
+    		forklift.changeBottomBrakePosition(forklift.bottomPosition());
+    	}
+    	forklift.topToPosition(forklift.topBrakePosition(), 0.5);
+    	//}
+    	
+    	//forklift.moveToPosition(GetNextPos(), 1);
     	//mets the target position
     }
 
