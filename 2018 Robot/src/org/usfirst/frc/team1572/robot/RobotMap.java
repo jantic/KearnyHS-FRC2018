@@ -7,15 +7,24 @@
 
 package org.usfirst.frc.team1572.robot;
 
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Victor;
@@ -38,10 +47,10 @@ public class RobotMap {
 	public static TalonSRX rightTestDriveMaster;
 	public static VictorSPX leftTestDriveSlave;
 	public static VictorSPX rightTestDriveSlave;
-	public static double bottomLowLimit = 22000;
-	public static double bottomHighLimit = 80000;
-	public static double topLowLimit = 1200;
-	public static double topHighLimit = 29000;
+	public static double bottomLowLimit = 24000;
+	public static double bottomHighLimit = 93000;
+	public static double topLowLimit = 500;
+	public static double topHighLimit = 52000;
 	public static double totalTravel = (bottomHighLimit - bottomLowLimit) + (topHighLimit - topLowLimit);
 	public static Spark leftIntake;
 	public static Spark rightIntake;
@@ -57,6 +66,7 @@ public class RobotMap {
 	public static Solenoid climbRelease;
 	public static Solenoid platformRelease;
 	public static DigitalInput forkliftReset;
+	public static Servo servo;
 	
 	public static void init() {
 		leftDriveMaster = new TalonSRX(1);
@@ -109,6 +119,8 @@ public class RobotMap {
 		climbRelease = new Solenoid(0);
 		platformRelease = new Solenoid(1);
 		forkliftReset = new DigitalInput(0);
+		servo = new Servo(4);
+		CameraServer.getInstance().startAutomaticCapture();
 	}
 	
 	// For example to map the left and right motors, you could define the

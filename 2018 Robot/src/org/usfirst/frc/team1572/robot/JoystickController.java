@@ -3,6 +3,7 @@ package org.usfirst.frc.team1572.robot;
 import org.usfirst.frc.team1572.robot.commands.main.Climb;
 import org.usfirst.frc.team1572.robot.commands.main.DeployClimber;
 import org.usfirst.frc.team1572.robot.commands.main.DeployPlatform;
+import org.usfirst.frc.team1572.robot.commands.main.ForkliftAlmostUp;
 import org.usfirst.frc.team1572.robot.commands.main.ForkliftDown;
 import org.usfirst.frc.team1572.robot.commands.main.ForkliftDownReset;
 import org.usfirst.frc.team1572.robot.commands.main.ForkliftSwitchHeight;
@@ -37,16 +38,17 @@ public class JoystickController {
 		final Joystick joystick = new Joystick(0);
 		//setButtonPressBehavior(joystick, 0, new Record(), new StopRecording());
 		//setButtonBehavior(joystick, , new GearGrabOpen(), new GearGrabClose());
-		setButtonPressBehavior(joystick, 3, new Climb(), new StopClimb());
+		//setButtonPressBehavior(joystick, 3, new Climb(), new StopClimb());
 		//setButtonBehavior(joystick, 5, new ForwardIntake(20), new StopIntake());
-		setButtonBehavior(joystick, 5, new TwistIntake(20, 0.4, 0.9), new StopIntake()); // this works better than both sides forward
+		setButtonBehavior(joystick, 5, new TwistIntake(20, 0.7, 1), new StopIntake()); // this works better than both sides forward
 		setButtonBehavior(joystick, 6, new ReverseIntake(20), new StopIntake());
-		setButtonPressBehavior(joystick, 7, new DeployPlatform(), new UndeployPlatform());
-		setButtonPressBehavior(joystick, 8, new DeployClimber(), new UndeployClimber());
-		setButtonPressBehavior(joystick, 4, new ForkliftUp(2));
-		setButtonPressBehavior(joystick, 1, new ForkliftDownReset(2));
+		//setButtonPressBehavior(joystick, 7, new DeployPlatform(), new UndeployPlatform());
+		setButtonPressBehavior(joystick, 7, new DeployClimber(), new UndeployClimber());
+		setButtonPressBehavior(joystick, 4, new ForkliftUp(0.25));
+		setButtonPressBehavior(joystick, 3, new ForkliftAlmostUp(0.25));
+		setButtonPressBehavior(joystick, 1, new ForkliftDownReset(0.25));
 		//setButtonPressBehavior(joystick, 2, new ForkliftToPos(12000, 2));
-		setButtonPressBehavior(joystick, 2, new ForkliftSwitchHeight(2));
+		setButtonPressBehavior(joystick, 2, new ForkliftSwitchHeight(0.25));
 		return new JoystickController(joystick);
 		
 		//sets button controls for Main Controller
@@ -55,11 +57,14 @@ public class JoystickController {
 	private static JoystickController generateCoPilotJoystick(){
 		final Joystick joystick = new Joystick(1);
 		//setButtonPressBehavior(joystick, 1, new ResetForkliftEncoders());
-		setButtonBehavior(joystick, 5, new ForwardIntake(120, 0.4), new StopIntake());
+		setButtonBehavior(joystick, 7, new ForwardIntake(120, 0.35), new StopIntake());
+		setButtonBehavior(joystick, 5, new TwistIntake(20, 0.7, 1), new StopIntake());
 		//setButtonBehavior(joystick, 5, new TwistIntake(20, 0.75, -.5), new StopIntake());
 		//setButtonBehavior(joystick, 6, new TwistIntake(20, -.5, 0.75), new StopIntake());
 		//setButtonBehavior(joystick, 2, new TwistIntake(20, 0.75, 0.6), new StopIntake());
-		setButtonPressBehavior(joystick, 3, new ForkliftDownReset(2));
+		//setButtonPressBehavior(joystick, 3, new ForkliftDownReset(2));
+		setButtonPressBehavior(joystick, 4, new Climb(), new StopClimb());
+		setButtonPressBehavior(joystick, 1, new DeployClimber(), new UndeployClimber());
 		//set buttom controls for Co controller
 		return new JoystickController(joystick);
 	}

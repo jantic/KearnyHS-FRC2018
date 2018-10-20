@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLine extends CommandGroup {
 
     public AutoLine() {
-    	addSequential(new DriveForwardTimed(14, 0.5, 5));
+    	addSequential(new DriveForwardTimed(14, 0.75, 5));
     	//Drive forward over auto line
     	
         // Add Commands here:

@@ -28,6 +28,7 @@ import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoScale;
 import org.usfirst.frc.team1572.robot.commands.autonomous.RightAutoSwitch;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.Testing;
 import org.usfirst.frc.team1572.robot.commands.main.TeleopDrive;
+import org.usfirst.frc.team1572.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team1572.robot.subsystems.ClimbRelease;
 import org.usfirst.frc.team1572.robot.subsystems.Climber;
 import org.usfirst.frc.team1572.robot.subsystems.Drivetrain;
@@ -63,6 +64,7 @@ public class Robot extends TimedRobot {
 	public static HeadingSubsystem headingSubsystem;
 	public static PlatformRelease platformRelease;
 	public static ClimbRelease climbRelease;
+	public static CameraSubsystem cameraSubsystem;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser;
@@ -76,6 +78,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		//oi = new OI();
 		RobotMap.init();
+		cameraSubsystem = new CameraSubsystem();
 		drivetrain = new Drivetrain();
 		forklift = new Forklift();
 		intake = new Intake();
@@ -246,7 +249,7 @@ public class Robot extends TimedRobot {
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
 		}
-		Scheduler.getInstance().add(new TeleopDrive());
+		//Scheduler.getInstance().add(new TeleopDrive());
 	}
 
 	/**

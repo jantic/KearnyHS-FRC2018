@@ -41,13 +41,28 @@ public class ForkliftManual extends Command {
     	else{*/
     		//forklift.moveManually(stick.getRightStickY() * -0.4);
     	if(Math.abs(stick.getRightTrigger()) < 0.2) {
-    		forklift.bottomToPosition(forklift.bottomBrakePosition(), 1);
+    		/*if(forklift.bottomBrakePosition() == 0) {
+    			forklift.bottomToPosition(forklift.bottomBrakePosition(), 1);
+    			if(RobotMap.forkliftReset.get()) {
+    	    		forklift.moveManually(0);
+    	    		forklift.resetEncoders();
+    	    	}
+    	    	else if(forklift.bottomPosition() < RobotMap.bottomLowLimit) {
+    	    		forklift.moveManually(-0.3);
+    	    	}
+    	    	else {
+    	    		forklift.moveManually(-0.6);
+    	    	}
+    		}*/
+    		//else {
+    			forklift.bottomToPosition(forklift.bottomBrakePosition(), 1);
+    		//}
     	}
-    	else if(forklift.bottomPosition() >= 72000 && forklift.bottomPosition() <= 79000 && stick.getRightTrigger() < 0) {
-    		forklift.moveManually(stick.getRightTrigger() * -0.2);
+    	else if(forklift.bottomPosition() >= 72000 && forklift.bottomPosition() <= 87000 && stick.getRightTrigger() < 0) {
+    		forklift.moveManually(stick.getRightTrigger() * -0.4);
     		forklift.changeBottomBrakePosition(forklift.bottomPosition());
     	}
-    	else if(forklift.bottomPosition() <= 0 && stick.getRightTrigger() > 0 || forklift.bottomPosition() >= 79000 && stick.getRightTrigger() < 0) {
+    	else if(forklift.bottomPosition() <= 0 && stick.getRightTrigger() > 0 || forklift.bottomPosition() >= 87000 && stick.getRightTrigger() < 0) {
     		forklift.moveManually(0);
     		forklift.changeBottomBrakePosition(forklift.bottomPosition());
     	}
@@ -55,7 +70,7 @@ public class ForkliftManual extends Command {
     		forklift.moveManually(stick.getRightTrigger() * -0.4);
     		forklift.changeBottomBrakePosition(forklift.bottomPosition());
     	}
-    	forklift.topToPosition(forklift.topBrakePosition(), 0.5);
+    	forklift.topToPosition(forklift.topBrakePosition(), 1);
     	//}
     	
     	//forklift.moveToPosition(GetNextPos(), 1);

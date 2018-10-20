@@ -27,8 +27,8 @@ public class ForkliftUp extends Command {
     }
     
     protected void execute() {
-    	forklift.moveToPosition(RobotMap.topHighLimit - RobotMap.topLowLimit + 72000 - RobotMap.bottomLowLimit, 1);
-    	forklift.changeBottomBrakePosition(72000);
+    	forklift.moveToPosition(RobotMap.topHighLimit - RobotMap.topLowLimit + 88000 - RobotMap.bottomLowLimit, 1);
+    	forklift.changeBottomBrakePosition(88000);
     	forklift.changeTopBrakePosition(RobotMap.topHighLimit);
     	//moves the forklift to this position
     	//forklift.currentPosition() + rightTrigger

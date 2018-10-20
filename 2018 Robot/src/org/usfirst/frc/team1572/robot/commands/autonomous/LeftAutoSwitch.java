@@ -4,6 +4,9 @@ import org.usfirst.frc.team1572.robot.Robot;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.Delay;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForwardTimed;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.TurnToAngle;
+import org.usfirst.frc.team1572.robot.commands.main.ForkliftSwitchHeight;
+import org.usfirst.frc.team1572.robot.commands.main.ForwardIntake;
+import org.usfirst.frc.team1572.robot.commands.main.ReverseIntake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -13,17 +16,22 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftAutoSwitch extends CommandGroup {
 
     public LeftAutoSwitch() {
-    	if(Robot.ourSwitch == 'R'){ //change to r later
+    	if(Robot.ourSwitch == 'R'){
     		//drive past auto line
-    		addSequential(new DriveForwardTimed(14, 0.7, 5));
+    		addSequential(new DriveForwardTimed(10, 0.7, 5));
     	}
     	else {
     		//place box in switch
-    		addSequential(new DriveForwardTimed(14-2.3, 0.7, 4));
+    		//addParallel(new ForwardIntake(2, 0.3));
+    		//addSequential(new ForkliftSwitchHeight(2));
+    		addParallel(new ForwardIntake(1, 0.1));
+    		addSequential(new ForkliftSwitchHeight(1));
+    		addSequential(new DriveForwardTimed(10.5, 0.7, 4));
     		addSequential(new Delay(0.25));
-    		addSequential(new TurnToAngle(1, 90, 0.75));
-    		//addSequential(new Delay(0.25));
-    		addSequential(new DriveForwardTimed(0.5, 0.5, 4));
+    		addSequential(new TurnToAngle(1, 90, 0.65));
+    		addSequential(new Delay(0.25));
+    		addSequential(new DriveForwardTimed(1.5, 0.5, 1));
+    		addSequential(new ReverseIntake(0.5));
     	}
         // Add Commands here:
         // e.g. addSequential(new Command1());

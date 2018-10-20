@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1572.robot.subsystems;
 
 import org.usfirst.frc.team1572.robot.RobotMap;
+import org.usfirst.frc.team1572.robot.commands.main.TeleopDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -28,7 +29,7 @@ public class Drivetrain extends Subsystem {
 	double maxRPM = 3200;
 	double leftPosition = 0;
 	double rightPosition = 0;
-	double encoderConverstion = 63.5; //set 50 to however many pulses it takes to go one inch
+	double encoderConverstion = 63.5; //set to however many pulses it takes to go one inch
 	double lastTimeLeft;
 	double currentTimeLeft;
 	double lastTimeRight;
@@ -181,14 +182,14 @@ public class Drivetrain extends Subsystem {
 	public double InchesToEncoder(double inches) {
 		double encoderValue = inches * this.encoderConverstion;
 		return encoderValue;
-		//takes inches and converts into encoder pluses
+		//takes inches and converts into encoder pulses
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new TeleopDrive());
     }
 }
 

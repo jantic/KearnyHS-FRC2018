@@ -8,8 +8,10 @@ import org.usfirst.frc.team1572.robot.RobotMap;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForward;
 import org.usfirst.frc.team1572.robot.commands.autonomous.autocommands.DriveForwardTimed;
 import org.usfirst.frc.team1572.robot.commands.main.ForkliftManual;
+import org.usfirst.frc.team1572.robot.commands.main.ForkliftSwitchHeight;
 import org.usfirst.frc.team1572.robot.commands.main.ForkliftToPos;
 import org.usfirst.frc.team1572.robot.commands.main.ForkliftUp;
+import org.usfirst.frc.team1572.robot.commands.main.ForwardIntake;
 import org.usfirst.frc.team1572.robot.commands.main.ReverseIntake;
 import org.usfirst.frc.team1572.robot.commands.main.StopIntake;
 /**
@@ -20,8 +22,12 @@ public class Testing extends CommandGroup {
     public Testing() {
     	SmartDashboard.putString("daRealSwitch", Character.toString(Robot.ourSwitch));
     	if(Robot.ourSwitch == 'R') {
+    		addSequential(new CubeVision(60));
     		//addSequential(new DriveForwardTimed(0.5, 0.5, 0.5));
-    		addSequential(new TurnToAngle(3, -90, 0.5));
+    		//addParallel(new ForwardIntake(2, 0.3));
+    		//addSequential(new ForkliftSwitchHeight(2));
+    		//addSequential(new DriveForwardTimed(2, 0.5, 2));
+    		//addSequential(new TurnToAngle(3, -90, 0.5));
     	}
     	else if(Robot.ourSwitch == 'L') {
     		//addSequential(new DriveForwardTimed(0.5, 0.5, 0.5));

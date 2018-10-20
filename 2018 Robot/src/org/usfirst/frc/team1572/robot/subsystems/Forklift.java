@@ -128,13 +128,13 @@ public class Forklift extends Subsystem {
 		double difference = position - topPosition();
 		double tolerance = 2;
 		difference /= ((topHighLimit - topLowLimit) / x);
-		difference *= 3.5;
+		difference *= 5.5;
 		difference *= maxSpeed;
 		if(difference > maxSpeed) {
 			difference = maxSpeed;
 		}
-		else if(difference < -1 * maxSpeed) {
-			difference = -1 * maxSpeed;
+		else if(difference < -1 * 0.75) {
+			difference = -0.75 * maxSpeed;
 		}
 		//if (position > topPosition()) {
 			topForklift.set(ControlMode.PercentOutput, difference);
