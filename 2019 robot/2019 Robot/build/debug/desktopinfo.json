@@ -1,0 +1,9 @@
+[
+  {
+    "name": "2019 Robot",
+    "file": "C:\\Users\\Robotics\\Desktop\\2019 robot\\2019 Robot\\build\\libs\\2019 Robot.jar",
+    "extensions": [],
+    "librarydir": "C:\\Users\\Robotics\\Desktop\\2019 robot\\2019 Robot\\build\\tmp\\jniExtractDir",
+    "mainclass": "frc.robot.Main"
+  }
+]
